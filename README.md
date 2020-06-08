@@ -20,8 +20,7 @@
 
 ## Overview
 
-_**Project Title** is lorem ipsum dolor sit amet. Phasellus dapibus fermentum risus vitae bibendum. Integer vel ipsum mollis odio sollicitudin ornare eu vel ex. In quis fringilla velit, ac maximus quam. Etiam eget placerat neque. Aenean faucibus sem non nisi lobortis ullamcorper._
-
+_**Quizmon** is an app where users can create and share multiple choice questions. Ever wanted to quickly test yourself on a particular topic? Ever see an interesting issue or phenomenon and wanted to share it with others as a quick quiz? Quizmon changes the pace by having multiple choice questions instead of lengthy posts. While discussing topics at length can be great for learning, so can quickly iterating through the valuable knowledge nuggets that our peers are willing to share.
 
 <br>
 
