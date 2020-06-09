@@ -155,7 +155,7 @@ src
 | React - Home Page (logged in) |    H     |     5 hrs      |     TBD     |     TBD     |
 | React - Question Create Page |    H     |     3 hrs      |     TBD     |     TBD     |
 | React - Question Edit/Delete Page |    M     |     1 hrs      |     TBD     |     TBD     |
-| TOTAL               |    40 hrs      |     TBD     |     TBD     |     TBD     |
+| TOTAL               |         |     40 hrs    |     TBD     |     TBD     |
 
 
 <br>
