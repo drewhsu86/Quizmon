@@ -78,6 +78,7 @@ Here are some Post-MVP goals/features that would help enhance the user experienc
     * A field: 'private: boolean' can be used 
   * A like system can be implemented using another thru table, similar to completed 
     * To make it a bit more complicated than completed, the like system would need to be able to toggle whether a User liked a Question (in case they changed their mind)
+  * Users can edit or delete their past comments, and a new view can be added for them to view all their own comments
 
 <br>
 
