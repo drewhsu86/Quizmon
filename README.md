@@ -54,8 +54,8 @@
       * Lets users see their own Questions in their home, or dashboard, area 
       * Lets users create a multiple choice Question
       * Lets users edit and/or delete their own Questions
-    * Lets anyone view a list of Questions in a browse page 
-    * Lets anyone view one Question, and try to answer it, in a questions page with :id 
+      * Lets anyone view a list of Questions in a browse page 
+      * Lets anyone view one Question, and try to answer it, in a questions page with :id 
     * Lets a User have their Question completions saved so they know if they tried it (they may attempt Questions again) 
     * Lets any User comment on any Question, including its creator 
     * Lets anyone read all comments on the bottom of the Question's individual page 
