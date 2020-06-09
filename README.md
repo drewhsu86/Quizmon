@@ -73,14 +73,28 @@
 
 src
 |__ components/
-      |__ 
+      |__ auth/
+          |__ signin.js
+          |__ signup.js
+      |__ nav/
+          |__ index.js
+      |__ questions/
+          |__ Browse.js
+          |__ QuestionDetails.js
+      |__ user/ 
+          |__ home.js 
+          |__ create.js
+          |__ edit.js
+
 |__ services/
       |__ apiConfig.js
       |__ users.js 
       |__ questions.js 
       |__ comments.js 
       |__ completes.js
+|__ app.css
 |__ app.js
+|__ index.js
 ```
 
 #### Component Breakdown
@@ -89,7 +103,7 @@ src
 
 |  Component   |    Type    | state | props | Description                                                      |
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
-|    Header    | functional |   n   |   n   | _The header will contain the navigation and logo._               |
+|    App       |   stateful |   y   |   n   | _Holds user state and controls the routes_               |
 |  Navigation  | functional |   n   |   n   | _The navigation will provide a link to each of the pages._       |
 |   Gallery    |   class    |   y   |   n   | _The gallery will render the posts using cards in flexbox._      |
 | Gallery Card | functional |   n   |   y   | _The cards will render the post info via props._                 |
