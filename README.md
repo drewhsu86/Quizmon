@@ -51,9 +51,9 @@
     * With the pages shown in wireframes 
     * Built close to the structure shown in component hierarchy 
     * Allows sign in, sign up, and the 5 CRRUD operations w.r.t. the Questions database 
-    * Lets users see their own Questions in their home, or dashboard, area 
-    * Lets users create a multiple choice Question
-    * Lets users edit and/or delete their own Questions
+      * Lets users see their own Questions in their home, or dashboard, area 
+      * Lets users create a multiple choice Question
+      * Lets users edit and/or delete their own Questions
     * Lets anyone view a list of Questions in a browse page 
     * Lets anyone view one Question, and try to answer it, in a questions page with :id 
     * Lets a User have their Question completions saved so they know if they tried it (they may attempt Questions again) 
