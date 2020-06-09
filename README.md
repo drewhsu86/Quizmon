@@ -91,7 +91,7 @@ Here are some Post-MVP goals/features that would help enhance the user experienc
 |      React       | Frontend Framework |
 |   React Router   | URL Routes for React |
 | Ruby on Rails    | Backend server/API framework |
-|   Postgresql     | _Lorem ipsum dolor sit amet, consectetur._ |
+|   Postgresql     | SQL database manager |
 |  Bcrypt  | Backend password hashing |
 |  CORS    | Backend cross-origin-resource-sharing compatibility | 
 
