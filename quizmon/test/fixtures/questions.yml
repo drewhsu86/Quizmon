@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  correct_answer: MyString
+  answer_a: MyString
+  answer_b: MyString
+  answer_c: MyString
+  answer_d: MyString
+  private: false
+  user: one
+  topic: one
+
+two:
+  content: MyString
+  correct_answer: MyString
+  answer_a: MyString
+  answer_b: MyString
+  answer_c: MyString
+  answer_d: MyString
+  private: false
+  user: two
+  topic: two
