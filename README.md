@@ -138,15 +138,25 @@ src
 
 #### Component Estimates
 
-> Use this section to estimate the time necessary to build out each of the components you've described above.
+  * React component estimates include basic CSS to match the MVP mockup 
 
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
-| Add Contact Form    |    L     |     3 hrs      |     2 hrs     |    3 hrs    |
-| Create CRUD Actions |    H     |     3 hrs      |     1 hrs     |     TBD     |
-| TOTAL               |          |     6 hrs      |     3 hrs     |     TBD     |
+| Ruby on Rails - Models Setup/Testing    |    H     |     3 hrs      |     TBD     |    TBD   |
+| Ruby on Rails - Auth Setup/Testing |    H     |     6 hrs      |     TBD     |     TBD     |
+| Ruby on Rails - Routes/Controllers Setup/Testing    |    H     |     3 hrs      |     TBD     |    TBD   |
+| React - Setup and Route Creation |    H     |     3 hrs      |     TBD     |     TBD     |
+| React - Api Config |    H     |     1 hrs      |     TBD     |     TBD     |
+| React - Services: Backend JS Functions |    M     |     3 hrs      |     TBD     |     TBD     |
+| React - Browse Page |    H     |     3 hrs      |     TBD     |     TBD     |
+| React - Question View Page |    M     |     3 hrs      |     TBD     |     TBD     |
+| React - Sign up/Sign in Pages |    M     |     3 hrs      |     TBD     |     TBD     |
+| React - Nav bar |    H     |     6 hrs      |     TBD     |     TBD     |
+| React - Home Page (logged in) |    H     |     5 hrs      |     TBD     |     TBD     |
+| React - Question Create Page |    H     |     3 hrs      |     TBD     |     TBD     |
+| React - Question Edit/Delete Page |    M     |     1 hrs      |     TBD     |     TBD     |
+| TOTAL               |    40 hrs      |     TBD     |     TBD     |     TBD     |
 
-> _Why is this necessary? Time frames are key to the development cycle. You have limited time to code your app, and your estimates can then be used to evaluate possibilities of your MVP and post-MVP based on time needed. It's best you assume an additional hour for each component, as well as a few hours added to the total time, to play it safe._
 
 <br>
 
