@@ -34,7 +34,9 @@
     * Create a multiple choice Question that is linked to User that created it
     * Edit or delete Question that a User had created 
     * View one Question based on id 
-    * View list of Questions (all questions, or questions under a specific topic)
+    * View list of Questions (all Questions, or Questions under a specific topic)
+    * Record when a User Completed a Question
+    * Allow a User to comment on a Question
   * Postgresql database managed by ROR that has the following tables:
     * User 
     * Question - belongs to User, belongs to Topic 
