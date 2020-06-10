@@ -38,3 +38,483 @@ FOREIGN KEY ("topic_id")
   [1m[36mActiveRecord::InternalMetadata Load (46.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(719479853272019385)[0m
   [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (8.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mQuestion Load (124.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mTopic Load (83.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  [1m[36mUser Load (124.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "popandlock@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (98.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "memer5000"], ["password_digest", "$2a$12$gCTCjaAwjsvfaDEjWuHR9O1sZp0ioScCluyjw7/kf.nhLPPavlCVm"], ["email", "popandlock@email.com"], ["created_at", "2020-06-10 15:32:35.439595"], ["updated_at", "2020-06-10 15:32:35.439595"]]
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (30.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (42.8ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Javascript"], ["created_at", "2020-06-10 15:32:35.623604"], ["updated_at", "2020-06-10 15:32:35.623604"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.4ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Ruby"], ["created_at", "2020-06-10 15:32:35.675114"], ["updated_at", "2020-06-10 15:32:35.675114"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.4ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Data structures"], ["created_at", "2020-06-10 15:32:35.681364"], ["updated_at", "2020-06-10 15:32:35.681364"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mTopic Load (116.4ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (124.3ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 1]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (0.5ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 2]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (2.3ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 3]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Destroy (2.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[35m (124.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "popandlock@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (6.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "memer5000"], ["password_digest", "$2a$12$SYQSgORq/WDuZ9XmUDbopuLvzRLPbLAr6uwaubhVqcz8d9OBjCgIS"], ["email", "popandlock@email.com"], ["created_at", "2020-06-10 15:36:13.330756"], ["updated_at", "2020-06-10 15:36:13.330756"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (3.0ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Javascript"], ["created_at", "2020-06-10 15:36:13.343497"], ["updated_at", "2020-06-10 15:36:13.343497"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (2.1ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Ruby"], ["created_at", "2020-06-10 15:36:13.358224"], ["updated_at", "2020-06-10 15:36:13.358224"]]
+  [1m[35m (40.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.4ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Data structures"], ["created_at", "2020-06-10 15:36:13.405204"], ["updated_at", "2020-06-10 15:36:13.405204"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "topics"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mTopic Load (0.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (1.1ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 4]]
+  [1m[35m (35.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (0.6ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 5]]
+  [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (28.8ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 6]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Destroy (43.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[35m (81.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "popandlock@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "memer5000"], ["password_digest", "$2a$12$zYrhhmcCqY2gn6q2T94Un./ZNNSMgoMKWsZQQZkIllX5uTXjOevpG"], ["email", "popandlock@email.com"], ["created_at", "2020-06-10 15:37:33.165363"], ["updated_at", "2020-06-10 15:37:33.165363"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (3.3ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Javascript"], ["created_at", "2020-06-10 15:37:33.172728"], ["updated_at", "2020-06-10 15:37:33.172728"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (36.6ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Ruby"], ["created_at", "2020-06-10 15:37:33.185230"], ["updated_at", "2020-06-10 15:37:33.185230"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.6ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Data structures"], ["created_at", "2020-06-10 15:37:33.230592"], ["updated_at", "2020-06-10 15:37:33.230592"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "topics"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Create (129.1ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "Test question, the answer is C."], ["correct_answer", "c"], ["answer_a", "test answer A"], ["answer_b", "test answer B"], ["answer_c", "test answer C"], ["answer_d", "test answer D"], ["private", false], ["user_id", 3], ["topic_id", 8], ["created_at", "2020-06-10 15:37:33.262692"], ["updated_at", "2020-06-10 15:37:33.262692"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions"[0m
+Started GET "/users" for ::1 at 2020-06-10 11:44:29 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 194ms (Views: 94.4ms | ActiveRecord: 98.5ms | Allocations: 6247)
+
+
+Started GET "/users/3" for ::1 at 2020-06-10 11:44:42 -0400
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}, "id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Completed 200 OK in 19ms (Views: 0.9ms | ActiveRecord: 1.2ms | Allocations: 2390)
+
+
+Started GET "/topics" for ::1 at 2020-06-10 13:11:24 -0400
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TopicsController#index as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}, "topic"=>{}}
+  [1m[36mTopic Load (15.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 142ms (Views: 37.6ms | ActiveRecord: 143.2ms | Allocations: 3807)
+
+
+Started GET "/questions" for ::1 at 2020-06-10 13:11:49 -0400
+Processing by QuestionsController#index as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}, "question"=>{}}
+  [1m[36mQuestion Load (300.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:9:in `index'
+Completed 200 OK in 392ms (Views: 85.2ms | ActiveRecord: 320.8ms | Allocations: 8637)
+
+
+Started POST "/users" for ::1 at 2020-06-10 13:12:17 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (87.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "bob1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bobthebob1@bob.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Create (342.1ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "bob1"], ["password_digest", "$2a$12$mO/CG.DkYFUoZ3b1SF7ssOZR7ticryZ9htj3QjYcSOU7NXh/JQat."], ["email", "bobthebob1@bob.com"], ["created_at", "2020-06-10 17:12:18.606907"], ["updated_at", "2020-06-10 17:12:18.606907"]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 201 Created in 1040ms (Views: 2.4ms | ActiveRecord: 449.7ms | Allocations: 10663)
+
+
+Started POST "/login" for ::1 at 2020-06-10 13:12:46 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/login"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login" for ::1 at 2020-06-10 13:13:05 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}, "authentication"=>{"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 178)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: auth):
+  
+app/controllers/authentication_controller.rb:25:in `login_params'
+app/controllers/authentication_controller.rb:8:in `login'
+Started POST "/auth/login" for ::1 at 2020-06-10 13:13:52 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}, "authentication"=>{"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "bob1"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `login'
+[31mUnpermitted parameter: :email[0m
+Completed 200 OK in 560ms (Views: 1.8ms | ActiveRecord: 3.8ms | Allocations: 7332)
+
+
+Started POST "/auth/verifyuser" for ::1 at 2020-06-10 13:14:06 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/auth/verifyuser"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/verify" for ::1 at 2020-06-10 13:14:17 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/auth/verify"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/auth/verify" for ::1 at 2020-06-10 13:14:23 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}, "authentication"=>{"user"=>{"username"=>"bob1", "email"=>"bobthebob1@bob.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 72ms (Views: 0.3ms | ActiveRecord: 6.3ms | Allocations: 1005)
+
+
+Started POST "/questions" for ::1 at 2020-06-10 13:18:42 -0400
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+[31mUnpermitted parameters: :answer_a, :answer_b, :answer_c, :answer_d[0m
+[31mUnpermitted parameters: :answer_a, :answer_b, :answer_c, :answer_d[0m
+  [1m[36mTopic Load (0.2ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:25:in `create'
+Completed 404 Not Found in 33ms (ActiveRecord: 54.8ms | Allocations: 2866)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Topic with 'id'={:topic=>nil}):
+  
+app/controllers/questions_controller.rb:25:in `create'
+Started POST "/questions" for ::1 at 2020-06-10 13:21:27 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+[31mUnpermitted parameters: :answer_a, :answer_b, :answer_c, :answer_d[0m
+[31mUnpermitted parameters: :answer_a, :answer_b, :answer_c, :answer_d[0m
+Completed 500 Internal Server Error in 336ms (ActiveRecord: 29.8ms | Allocations: 9107)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column topics.topic does not exist
+LINE 1: SELECT "topics".* FROM "topics" WHERE "topics"."topic" IS NU...
+                                              ^
+):
+  
+app/controllers/questions_controller.rb:25:in `create'
+Started POST "/questions" for ::1 at 2020-06-10 13:23:13 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 500 Internal Server Error in 318ms (ActiveRecord: 57.4ms | Allocations: 9064)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column topics.topic does not exist
+LINE 1: SELECT "topics".* FROM "topics" WHERE "topics"."topic" IS NU...
+                                              ^
+):
+  
+app/controllers/questions_controller.rb:25:in `create'
+Started POST "/questions" for ::1 at 2020-06-10 13:23:53 -0400
+  [1m[35m (9.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (0.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:25:in `create'
+Completed 422 Unprocessable Entity in 347ms (Views: 2.6ms | ActiveRecord: 28.5ms | Allocations: 21648)
+
+
+Started POST "/questions" for ::1 at 2020-06-10 13:24:59 -0400
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (0.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:26:in `create'
+Completed 422 Unprocessable Entity in 166ms (Views: 0.2ms | ActiveRecord: 39.5ms | Allocations: 19981)
+
+
+Started POST "/questions" for ::1 at 2020-06-10 13:26:56 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 500 Internal Server Error in 82ms (ActiveRecord: 12.8ms | Allocations: 7846)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/controllers/questions_controller.rb:25:in `[]'
+app/controllers/questions_controller.rb:25:in `create'
+Started POST "/questions" for ::1 at 2020-06-10 13:27:55 -0400
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 16.5ms | Allocations: 8259)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/questions_controller.rb:25:in `create'
+Started POST "/questions" for ::1 at 2020-06-10 13:29:27 -0400
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic"=>"Javascript", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (8.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:26:in `create'
+Completed 422 Unprocessable Entity in 190ms (Views: 0.3ms | ActiveRecord: 47.2ms | Allocations: 19993)
+
+
+Started GET "/topics" for ::1 at 2020-06-10 13:31:55 -0400
+Processing by TopicsController#index as */*
+  Parameters: {"title"=>"A new title here", "content"=>"The newest best content", "topic"=>{}}
+  [1m[36mTopic Load (3.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 30ms (Views: 18.0ms | ActiveRecord: 31.7ms | Allocations: 3543)
+
+
+Started POST "/questions" for ::1 at 2020-06-10 13:32:20 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"test question 2, the answer is B", "private"=>false, "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic_id"=>"7", "question"=>{"content"=>"test question 2, the answer is B", "correct_answer"=>"b", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false, "topic_id"=>"7"}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (0.4ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:26:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:33:in `create'
+  [1m[36mTopic Load (49.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:33:in `create'
+  [1m[36mQuestion Create (29.9ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "test question 2, the answer is B"], ["correct_answer", "b"], ["answer_a", "answer for A"], ["answer_b", "answer for B"], ["answer_c", "answer for C"], ["answer_d", "answer for D"], ["private", false], ["user_id", 4], ["topic_id", 7], ["created_at", "2020-06-10 17:32:21.088874"], ["updated_at", "2020-06-10 17:32:21.088874"]]
+  ↳ app/controllers/questions_controller.rb:33:in `create'
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:33:in `create'
+Completed 201 Created in 416ms (Views: 3.3ms | ActiveRecord: 104.1ms | Allocations: 25315)
+
+
+Started PUT "/questions/2" for ::1 at 2020-06-10 13:33:47 -0400
+Processing by QuestionsController#update as */*
+  Parameters: {"content"=>"test question 2, the answer is D", "private"=>false, "correct_answer"=>"d", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic_id"=>"8", "id"=>"2", "question"=>{"content"=>"test question 2, the answer is D", "correct_answer"=>"d", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false, "topic_id"=>"8"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = $1 AND "questions"."id" = $2 LIMIT $3[0m  [["user_id", 4], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:60:in `set_question'
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+  [1m[36mTopic Load (2.1ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+  [1m[36mQuestion Create (79.5ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "test question 2, the answer is D"], ["correct_answer", "d"], ["answer_a", "answer for A"], ["answer_b", "answer for B"], ["answer_c", "answer for C"], ["answer_d", "answer for D"], ["private", false], ["user_id", 4], ["topic_id", 8], ["created_at", "2020-06-10 17:33:48.014132"], ["updated_at", "2020-06-10 17:33:48.014132"]]
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+Completed 200 OK in 318ms (Views: 0.4ms | ActiveRecord: 128.7ms | Allocations: 23483)
+
+
+Started GET "/questions/" for ::1 at 2020-06-10 13:34:11 -0400
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"test question 2, the answer is D", "private"=>false, "correct_answer"=>"d", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "topic_id"=>"8", "question"=>{"content"=>"test question 2, the answer is D", "correct_answer"=>"d", "answer_a"=>"answer for A", "answer_b"=>"answer for B", "answer_c"=>"answer for C", "answer_d"=>"answer for D", "private"=>false, "topic_id"=>"8"}}
+  [1m[36mQuestion Load (48.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:9:in `index'
+Completed 200 OK in 54ms (Views: 5.0ms | ActiveRecord: 48.2ms | Allocations: 1471)
+
+
+Started PUT "/questions/2" for ::1 at 2020-06-10 13:34:58 -0400
+Processing by QuestionsController#update as */*
+  Parameters: {"content"=>"test question 2, the answer is A", "private"=>false, "correct_answer"=>"a", "topic_id"=>"8", "id"=>"2", "question"=>{"content"=>"test question 2, the answer is A", "correct_answer"=>"a", "private"=>false, "topic_id"=>"8"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = $1 AND "questions"."id" = $2 LIMIT $3[0m  [["user_id", 4], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:60:in `set_question'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+  [1m[36mQuestion Create (2.1ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "private", "user_id", "topic_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["content", "test question 2, the answer is A"], ["correct_answer", "a"], ["private", false], ["user_id", 4], ["topic_id", 8], ["created_at", "2020-06-10 17:34:58.490042"], ["updated_at", "2020-06-10 17:34:58.490042"]]
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:44:in `update'
+Completed 200 OK in 120ms (Views: 2.0ms | ActiveRecord: 26.7ms | Allocations: 22640)
+
+
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mQuestion Load (1.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Destroy (86.0ms)[0m  [1m[31mDELETE FROM "questions" WHERE "questions"."id" = $1[0m  [["id", 1]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Destroy (0.5ms)[0m  [1m[31mDELETE FROM "questions" WHERE "questions"."id" = $1[0m  [["id", 2]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Destroy (0.5ms)[0m  [1m[31mDELETE FROM "questions" WHERE "questions"."id" = $1[0m  [["id", 3]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Destroy (0.5ms)[0m  [1m[31mDELETE FROM "questions" WHERE "questions"."id" = $1[0m  [["id", 4]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (0.8ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 7]]
+  [1m[35m (41.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (0.9ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 8]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Destroy (0.5ms)[0m  [1m[31mDELETE FROM "topics" WHERE "topics"."id" = $1[0m  [["id", 9]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mUser Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  [1m[35m (41.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = $1[0m  [["user_id", 4]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "popandlock@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "memer5000"], ["password_digest", "$2a$12$2QhHkgGZtMmTc58HHdpr4u8qxx42pIQjv0rvjvCyYDIIfiJmECQnq"], ["email", "popandlock@email.com"], ["created_at", "2020-06-10 17:36:18.313120"], ["updated_at", "2020-06-10 17:36:18.313120"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (6.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.5ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Javascript"], ["created_at", "2020-06-10 17:36:18.328487"], ["updated_at", "2020-06-10 17:36:18.328487"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.5ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Ruby"], ["created_at", "2020-06-10 17:36:18.338334"], ["updated_at", "2020-06-10 17:36:18.338334"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.7ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Data structures"], ["created_at", "2020-06-10 17:36:18.345155"], ["updated_at", "2020-06-10 17:36:18.345155"]]
+  [1m[35m (40.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "topics"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Create (0.9ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "Test question, the answer is C."], ["correct_answer", "c"], ["answer_a", "test answer A"], ["answer_b", "test answer B"], ["answer_c", "test answer C"], ["answer_d", "test answer D"], ["private", false], ["user_id", 5], ["topic_id", 11], ["created_at", "2020-06-10 17:36:18.401247"], ["updated_at", "2020-06-10 17:36:18.401247"]]
+  [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions"[0m
