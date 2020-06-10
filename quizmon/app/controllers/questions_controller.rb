@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
 
-    render json: @question, include: :topic
+    render json: @question, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content]}} ] 
   end
 
   # POST /questions
@@ -59,6 +59,6 @@ class QuestionsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def question_params
-    params.require(:question).permit(:content, :topic, :correct_answer, :answer_a, :answer_b, :answer_c, :answer_d, :private, :topic_id)
+    params.require(:question).permit(:content, :topic, :correct_answer, :answer_a, :answer_b, :answer_c, :answer_d, :private, :user_id, :topic_id)
   end
 end

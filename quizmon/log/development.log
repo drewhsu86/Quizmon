@@ -518,3 +518,513 @@ Completed 200 OK in 120ms (Views: 2.0ms | ActiveRecord: 26.7ms | Allocations: 22
   [1m[36mQuestion Create (0.9ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "Test question, the answer is C."], ["correct_answer", "c"], ["answer_a", "test answer A"], ["answer_b", "test answer B"], ["answer_c", "test answer C"], ["answer_d", "test answer D"], ["private", false], ["user_id", 5], ["topic_id", 11], ["created_at", "2020-06-10 17:36:18.401247"], ["updated_at", "2020-06-10 17:36:18.401247"]]
   [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions"[0m
+Started GET "/comments" for ::1 at 2020-06-10 14:28:42 -0400
+  [1m[35m (88.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.3.1) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.3.1) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (43.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(719479853272019385)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20200610182117)
+  [1m[35m (2.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (274.4ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" character varying, "user_id" bigint NOT NULL, "question_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_2f2557d9f5"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_question_id" ON "comments"  ("question_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200610182117"]]
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCompleteds (20200610182142)
+  [1m[35m (40.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "completeds" ("id" bigserial primary key, "user_id" bigint NOT NULL, "question_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b10bb0df94"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_6713694aac"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (47.9ms)[0m  [1m[35mCREATE  INDEX  "index_completeds_on_user_id" ON "completeds"  ("user_id")[0m
+  [1m[35m (46.1ms)[0m  [1m[35mCREATE  INDEX  "index_completeds_on_question_id" ON "completeds"  ("question_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200610182142"]]
+  [1m[35m (36.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (25.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(719479853272019385)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/comments" for ::1 at 2020-06-10 14:29:11 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  [1m[36mComment Load (28.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/controllers/comments_controller.rb:9:in `index'
+Completed 200 OK in 71ms (Views: 17.4ms | ActiveRecord: 31.2ms | Allocations: 2623)
+
+
+Started GET "/users" for ::1 at 2020-06-10 14:29:27 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (48.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 153ms (Views: 67.4ms | ActiveRecord: 67.7ms | Allocations: 7528)
+
+
+Started GET "/questions" for ::1 at 2020-06-10 14:29:32 -0400
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (114.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:9:in `index'
+Completed 200 OK in 149ms (Views: 25.9ms | ActiveRecord: 118.3ms | Allocations: 9998)
+
+
+Started POST "/comments" for ::1 at 2020-06-10 14:30:17 -0400
+Processing by CommentsController#create as */*
+  Parameters: {"content"=>"this question is dope", "user_id"=>"5", "question_id"=>"5", "comment"=>{"content"=>"this question is dope", "user_id"=>"5", "question_id"=>"5"}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started POST "/comments" for ::1 at 2020-06-10 14:30:31 -0400
+Processing by CommentsController#create as */*
+  Parameters: {"content"=>"this question is dope", "user_id"=>"5", "question_id"=>"5", "comment"=>{"content"=>"this question is dope", "user_id"=>"5", "question_id"=>"5"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 62ms (Views: 0.2ms | ActiveRecord: 2.3ms | Allocations: 2357)
+
+
+Started PUT "/verify" for ::1 at 2020-06-10 14:31:18 -0400
+  
+ActionController::RoutingError (No route matches [PUT] "/verify"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started PUT "/auth/verify" for ::1 at 2020-06-10 14:31:22 -0400
+  
+ActionController::RoutingError (No route matches [PUT] "/auth/verify"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/auth/verify" for ::1 at 2020-06-10 14:31:27 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"content"=>"test question 2, the answer is A", "private"=>false, "correct_answer"=>"a", "topic_id"=>"8", "authentication"=>{"content"=>"test question 2, the answer is A", "private"=>false, "correct_answer"=>"a", "topic_id"=>"8"}}
+  [1m[36mUser Load (20.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 37ms (Views: 0.4ms | ActiveRecord: 20.9ms | Allocations: 812)
+
+
+Started GET "/users" for ::1 at 2020-06-10 14:31:44 -0400
+Processing by UsersController#index as */*
+  Parameters: {"content"=>"test question 2, the answer is A", "private"=>false, "correct_answer"=>"a", "topic_id"=>"8", "user"=>{}}
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 3.9ms | Allocations: 992)
+
+
+Started POST "/users" for ::1 at 2020-06-10 14:32:39 -0400
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"memer5000", "password"=>"[FILTERED]", "user"=>{"username"=>"memer5000"}}
+  [1m[35m (39.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Exists? (7.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 422 Unprocessable Entity in 115ms (Views: 0.2ms | ActiveRecord: 48.1ms | Allocations: 7137)
+
+
+Started POST "/auth/login" for ::1 at 2020-06-10 14:32:57 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"username"=>"memer5000", "password"=>"[FILTERED]", "authentication"=>{"username"=>"memer5000", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 149)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/authentication_controller.rb:25:in `login_params'
+app/controllers/authentication_controller.rb:8:in `login'
+Started POST "/auth/login" for ::1 at 2020-06-10 14:33:23 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"user": {username": "memer5000",
+	"password": "123456"}
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+	"user": {username": "memer5000",
+	"password": "123456"}
+}'):
+  
+actionpack (6.0.3.1) lib/action_dispatch/http/parameters.rb:114:in `rescue in parse_formatted_parameters'
+actionpack (6.0.3.1) lib/action_dispatch/http/parameters.rb:110:in `parse_formatted_parameters'
+actionpack (6.0.3.1) lib/action_dispatch/http/request.rb:389:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.3.1) lib/action_dispatch/http/request.rb:388:in `POST'
+actionpack (6.0.3.1) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.3.1) lib/action_controller/metal/params_wrapper.rb:278:in `_wrapper_enabled?'
+actionpack (6.0.3.1) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.3.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.3.1) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.3.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3.1) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.1) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3.1) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"user": {username": "memer5000",
+	"password": "123456"}
+}
+Started POST "/auth/login" for ::1 at 2020-06-10 14:33:34 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"user"=>{"username"=>"memer5000", "password"=>"[FILTERED]"}, "authentication"=>{"user"=>{"username"=>"memer5000", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:8:in `login'
+Completed 200 OK in 610ms (Views: 0.7ms | ActiveRecord: 2.7ms | Allocations: 1229)
+
+
+Started POST "/comments" for ::1 at 2020-06-10 14:34:28 -0400
+Processing by CommentsController#create as */*
+  Parameters: {"content"=>"this question is dope", "user_id"=>"5", "question_id"=>"5", "comment"=>{"content"=>"this question is dope", "user_id"=>"5", "question_id"=>"5"}}
+  [1m[36mUser Load (18.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:22:in `create'
+  [1m[36mQuestion Load (43.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:22:in `create'
+  [1m[36mComment Create (51.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "this question is dope"], ["user_id", 5], ["question_id", 5], ["created_at", "2020-06-10 18:34:28.896125"], ["updated_at", "2020-06-10 18:34:28.896125"]]
+  ↳ app/controllers/comments_controller.rb:22:in `create'
+  [1m[35m (68.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:22:in `create'
+Completed 201 Created in 353ms (Views: 2.0ms | ActiveRecord: 227.6ms | Allocations: 10853)
+
+
+Started POST "/completed" for ::1 at 2020-06-10 14:35:46 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/completed"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/completeds" for ::1 at 2020-06-10 14:35:58 -0400
+Processing by CompletedsController#create as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "completed"=>{"user_id"=>"5", "question_id"=>"5"}}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/completeds_controller.rb:22:in `create'
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/completeds_controller.rb:22:in `create'
+  [1m[36mCompleted Create (278.2ms)[0m  [1m[32mINSERT INTO "completeds" ("user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 5], ["question_id", 5], ["created_at", "2020-06-10 18:35:58.719488"], ["updated_at", "2020-06-10 18:35:58.719488"]]
+  ↳ app/controllers/completeds_controller.rb:22:in `create'
+  [1m[35m (43.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/completeds_controller.rb:22:in `create'
+Completed 201 Created in 405ms (Views: 2.8ms | ActiveRecord: 402.2ms | Allocations: 7905)
+
+
+Started POST "/questions/" for ::1 at 2020-06-10 14:36:35 -0400
+Processing by QuestionsController#create as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mUser Load (10.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+[31mUnpermitted parameter: :user_id[0m
+Completed 422 Unprocessable Entity in 246ms (Views: 0.9ms | ActiveRecord: 52.5ms | Allocations: 15318)
+
+
+Started POST "/questions/5" for ::1 at 2020-06-10 14:37:38 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/questions/5"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/questions/5" for ::1 at 2020-06-10 14:37:46 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (13.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+  [1m[36mTopic Load (11.4ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+Completed 200 OK in 156ms (Views: 41.1ms | ActiveRecord: 93.6ms | Allocations: 12766)
+
+
+Started GET "/questions/5" for ::1 at 2020-06-10 14:38:22 -0400
+  
+SyntaxError (/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:16: syntax error, unexpected ',', expecting =>
+...on, include: :topic, :comments, :completed
+...                              ^):
+  
+app/controllers/questions_controller.rb:16: syntax error, unexpected ',', expecting =>
+app/controllers/questions_controller.rb:16: syntax error, unexpected ',', expecting =>
+Started GET "/questions/5" for ::1 at 2020-06-10 14:38:59 -0400
+  
+SyntaxError (/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:16: syntax error, unexpected '\n', expecting =>
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:64: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/questions_controller.rb:16: syntax error, unexpected '\n', expecting =>
+app/controllers/questions_controller.rb:64: syntax error, unexpected end-of-input, expecting end
+app/controllers/questions_controller.rb:16: syntax error, unexpected '\n', expecting =>
+app/controllers/questions_controller.rb:64: syntax error, unexpected end-of-input, expecting end
+Started GET "/questions/5" for ::1 at 2020-06-10 14:47:27 -0400
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:16: syntax error, unexpected tLABEL
+... @question, include: relations: {
+...                     ^~~~~~~~~~
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:18: syntax error, unexpected '}', expecting end
+    }
+    ^
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:66: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/questions_controller.rb:16: syntax error, unexpected tLABEL
+app/controllers/questions_controller.rb:18: syntax error, unexpected '}', expecting end
+app/controllers/questions_controller.rb:66: syntax error, unexpected end-of-input, expecting end
+app/controllers/questions_controller.rb:16: syntax error, unexpected tLABEL
+app/controllers/questions_controller.rb:18: syntax error, unexpected '}', expecting end
+app/controllers/questions_controller.rb:66: syntax error, unexpected end-of-input, expecting end
+Started GET "/questions/5" for ::1 at 2020-06-10 14:49:45 -0400
+  
+SyntaxError (/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:17: syntax error, unexpected ',', expecting =>
+      :topic, :comments, :completed 
+            ^
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:18: syntax error, unexpected '}', expecting end
+    }
+    ^
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/quizmon/app/controllers/questions_controller.rb:66: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/questions_controller.rb:17: syntax error, unexpected ',', expecting =>
+app/controllers/questions_controller.rb:18: syntax error, unexpected '}', expecting end
+app/controllers/questions_controller.rb:66: syntax error, unexpected end-of-input, expecting end
+app/controllers/questions_controller.rb:17: syntax error, unexpected ',', expecting =>
+app/controllers/questions_controller.rb:18: syntax error, unexpected '}', expecting end
+app/controllers/questions_controller.rb:66: syntax error, unexpected end-of-input, expecting end
+Started GET "/questions/5" for ::1 at 2020-06-10 14:50:43 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (83.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+  [1m[36mTopic Load (1.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+Completed 500 Internal Server Error in 219ms (ActiveRecord: 393.3ms | Allocations: 16982)
+
+
+  
+NoMethodError (undefined method `topic' for #<Topic:0x00007ff15aaf40a8>):
+  
+app/controllers/questions_controller.rb:16:in `show'
+Started GET "/questions/5" for ::1 at 2020-06-10 14:52:15 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+Completed 500 Internal Server Error in 146ms (ActiveRecord: 47.6ms | Allocations: 9957)
+
+
+  
+NoMethodError (undefined method `includes' for #<Question:0x00007ff15aabfa10>):
+  
+app/controllers/questions_controller.rb:16:in `show'
+Started GET "/questions/5" for ::1 at 2020-06-10 14:52:47 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+  [1m[36mTopic Load (0.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+Completed 200 OK in 290ms (Views: 62.0ms | ActiveRecord: 186.3ms | Allocations: 12778)
+
+
+Started GET "/questions/5" for ::1 at 2020-06-10 15:05:12 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (4.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+  [1m[36mTopic Load (4.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+Completed 500 Internal Server Error in 552ms (ActiveRecord: 83.1ms | Allocations: 14917)
+
+
+  
+NoMethodError (undefined method `comments' for #<Question:0x00007ff15e84bc08>
+Did you mean?  committed!):
+  
+app/controllers/questions_controller.rb:16:in `show'
+Started GET "/questions/5" for ::1 at 2020-06-10 15:05:51 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (11.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+  [1m[36mTopic Load (34.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+  [1m[36mComment Load (287.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 5]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+Completed 200 OK in 2660ms (Views: 153.0ms | ActiveRecord: 4143.4ms | Allocations: 19355)
+
+
+Started GET "/questions/5" for ::1 at 2020-06-10 15:06:42 -0400
+Processing by QuestionsController#show as */*
+  Parameters: {"user_id"=>"5", "question_id"=>"5", "id"=>"5", "question"=>{"user_id"=>"5"}}
+  [1m[36mQuestion Load (55.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:14:in `show'
+  [1m[36mTopic Load (113.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+  [1m[36mComment Load (2.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 5]]
+  ↳ app/controllers/questions_controller.rb:16:in `show'
+Completed 200 OK in 759ms (Views: 87.0ms | ActiveRecord: 1461.3ms | Allocations: 18564)
+
+

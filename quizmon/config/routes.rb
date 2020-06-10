@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :completeds
+  resources :comments
   resources :questions
 
   # authentication_controller holds login and verify 
