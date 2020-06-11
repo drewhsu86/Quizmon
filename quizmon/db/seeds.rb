@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Completed.destroy_all 
+Comment.destroy_all
 Question.destroy_all
 Topic.destroy_all 
 User.destroy_all 
@@ -20,7 +22,10 @@ p "#{User.count} user(s) created"
 
 p "#{Topic.count} topic(s) created"
 
-@q1 = Question.create!({content: 'Test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @ruby 
-})
+Question.create!({content: 'Javascript test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @javascript, difficulty: 1 })
+
+Question.create!({content: 'Javascript test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @ruby, difficulty: 1 })
+
+Question.create!({content: 'Data structure test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @data_structures, difficulty: 1 })
 
 p "#{Question.count} question(s) created"

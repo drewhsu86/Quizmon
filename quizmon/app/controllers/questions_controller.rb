@@ -4,7 +4,34 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    @questions = Question.all
+    # topic_id is passed as a query on the endpoint 
+    # we filter by topic_id 
+    # if my_own is passed as a param 
+    # we filter questions where id is user_id 
+    @topic_id = params[:topic]
+    @my_own = params[:my_own]
+    
+    if @topic_id == nil
+      @questions = Question.all
+    else 
+      @questions = Question.where(topic_id: @topic_id)
+    end
+
+    if @my_own && @my_own.downcase == 'true'
+      # filter to keep questions where user id is that of the user with token 
+      # we authorize request here so it stays in the if statement 
+      # authorize request should give us an @current_user  
+      @current_user = authorize_request 
+      puts 'Current User'
+      puts @current_user
+      @questions.filter do |question|
+        
+        puts 'Question:'
+        puts question 
+
+        question[:user_id] == @current_user[:id] 
+      end
+    end
 
     render json: @questions
   end
