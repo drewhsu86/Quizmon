@@ -1028,3 +1028,13 @@ Processing by QuestionsController#show as */*
 Completed 200 OK in 759ms (Views: 87.0ms | ActiveRecord: 1461.3ms | Allocations: 18564)
 
 
+  [1m[35m (28.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(719479853272019385)[0m
+  [1m[35m (10.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDifficultyToQuestions (20200611125721)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (150.7ms)[0m  [1m[35mALTER TABLE "questions" ADD "difficulty" integer[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200611125721"]]
+  [1m[35m (95.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(719479853272019385)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
