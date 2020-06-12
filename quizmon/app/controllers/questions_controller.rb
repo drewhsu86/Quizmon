@@ -24,12 +24,10 @@ class QuestionsController < ApplicationController
       @current_user = authorize_request 
       puts 'Current User'
       puts @current_user
-      @questions.filter do |question|
-        
-        puts 'Question:'
-        puts question 
-
-        question[:user_id] == @current_user[:id] 
+      if @current_user != nil 
+        @questions = @questions.filter do |question|
+          question[:user_id] == @current_user[:id] 
+        end
       end
     end
 
@@ -38,9 +36,40 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   def show
+    # if the user is logged in and if they completed this question 
+    # return that the user has completed it, :completed => true 
+    # if the user is logged in and if they didn't complete this 
+    # question, return :completed => false 
+    # if the user isn't logged in, don't return or include a :completed 
+
+    # begin/rescue block taken from application control
+    # but the render is taken out 
+    
     @question = Question.find(params[:id])
 
-    render json: @question, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content]}} ] 
+    begin
+      header = request.headers['Authorization']
+      header = header.split(' ').last if header
+      @decoded = decode(header)
+      @completed_id = @decoded[:user_id]
+      @my_completed = Completed.find_by({user_id: @completed_id, question_id: @question[:id]})
+      if @my_completed == nil 
+        @my_completed = {message: 'No completion found' }
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      @completed_id = nil
+      @my_completed = { message: 'No user found' }
+    rescue JWT::DecodeError => e
+      @completed_id = nil  
+      @my_completed = { message: 'Decode Error' }
+    end
+
+    puts '@my_completed'
+    puts @my_completed
+
+    # render json: {question: @question, my_completed: @my_completed}.to_json, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content]}}] 
+
+    render json: @question, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content]}}] 
   end
 
   # POST /questions

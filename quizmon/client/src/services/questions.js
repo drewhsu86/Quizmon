@@ -5,8 +5,16 @@ export const getAllTopics = async () => {
   return resp.data;
 }
 
-export const getQuestions = async (topic) => {
-  const resp = await api.get(`/questions${topic ? '?topic='+topic : ''}`);
+export const getQuestions = async (myOwn, topic) => {
+  let queries = '' 
+  if (myOwn) queries += 'my_own=true'
+  if (topic) {
+    if (myOwn) queries += '&' 
+    queries += 'topic='+topic 
+  }
+  console.log('getQuestion queries: ', queries)
+
+  const resp = await api.get(`/questions${queries ? '?' + queries : ''}`);
   return resp.data;
 }
 

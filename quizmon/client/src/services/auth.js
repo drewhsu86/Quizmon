@@ -1,7 +1,7 @@
 import api from './apiConfig';
 
 export const loginUser = async (loginData) => {
-  const resp = await api.post('/auth/login', { auth: loginData })
+  const resp = await api.post('/auth/login', { user: loginData })
   localStorage.setItem('authToken', resp.data.token);
   api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
   return resp.data.user
@@ -25,5 +25,7 @@ export const verifyUser = async () => {
 }
 
 export const removeToken = () => {
+  console.log('Removing Token')
+  localStorage.removeItem('authToken')
   api.defaults.headers.common.authorization = null;
 }
