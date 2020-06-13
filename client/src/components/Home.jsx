@@ -24,14 +24,6 @@ export default class Browse extends Component {
   render() {
     console.log('token', localStorage.getItem('authToken'))
     // if we are not logged in, return a 'you are not logged in' screen 
-    if (!localStorage.getItem('authToken')) {
-      return (<div>
-        <h1>You are not logged in.</h1>
-        <Link to="/signin">
-          <button>Log in</button>
-        </Link>
-      </div> )
-    } else {
       return (
         <div className="browse">
           <h1>Home</h1>
@@ -49,7 +41,7 @@ export default class Browse extends Component {
           }
         </div>
       )
-    }
+    
   }
 }
 

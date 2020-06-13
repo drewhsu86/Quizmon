@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom'
-import { verifyUser } from './services/auth'
+import { verifyUser, removeToken } from './services/auth'
 
+import Nav from './components/Nav'
 import Browse from './components/Browse'
 import Question from './components/Question'
 import Signin from './components/Signin'
 import Signup from './components/Signup'
+import Logged from './components/Logged'
+import NotLogged from './components/NotLogged'
 import Home from './components/Home'
 import Create from './components/Create'
 
@@ -24,11 +27,12 @@ class App extends React.Component {
     console.log(response)
 
     if (response) {
-      this.setUsername(response.username, response.id)
+      this.setUser(response.username, response.id)
     }  
   }
 
-  setUsername(username, id) {
+  setUser = (username, id) => {
+    console.log('setting user: ', username, ':', id)
     this.setState({
       user: {
         username,
@@ -37,9 +41,18 @@ class App extends React.Component {
     })
   }
 
+  logout = () => {
+    removeToken() 
+    this.setState({
+      user: null 
+    })
+  }
+
   render() {
     return (
       <div className="App">
+        <Nav user={this.state.user} logout={this.logout} />
+        <main>
         <Route path="/" exact>
           <Browse />
         </Route>
@@ -47,18 +60,18 @@ class App extends React.Component {
           <Question />
         </Route>
         <Route path="/signin">
-          <Signin />
+            {!this.state.user ? <Signin setUser={this.setUser} /> : <Logged logout={this.logout} />}
         </Route>
         <Route path="/signup">
-          <Signup />
+            {!this.state.user ? <Signup setUser={this.setUser} /> : <Logged logout={this.logout} />}
         </Route>
         <Route path="/home">
-          <Home />
+          <Home user={this.state.user} />
         </Route>
         <Route path="/create">
-          <Create />
+          <Create user={this.state.user} />
         </Route>
-      
+        </main>
       </div>
     );
   }

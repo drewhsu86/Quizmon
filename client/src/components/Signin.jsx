@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { loginUser } from '../services/auth' 
 
 export default class Signin extends Component {
-  constructor() {
-    super() 
+  constructor(props) {
+    super(props) 
     this.state = {
       usernameInput: '',
       passwordInput: ''
@@ -24,6 +24,7 @@ export default class Signin extends Component {
     }
     const response = await loginUser(loginData)
     console.log(response)
+    this.props.setUser(response.username, response.id)
   }
 
   render() {

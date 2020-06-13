@@ -30,6 +30,7 @@ export default class Browse extends Component {
   render() {
     return (
       <div className="browse">
+        <h1>Browse Questions</h1>
         {
           this.state.questions.map((question, ind) => {
           return (

@@ -28,6 +28,7 @@ export default class Signin extends Component {
     }
     const response = await registerUser(registerData)
     console.log(response)
+    this.props.setUser(response.username, response.id)
   }
 
   render() {
