@@ -15,6 +15,10 @@ class Question extends Component {
   }
 
   async componentDidMount() {
+    await this.initializeQuestion()
+  }
+
+  initializeQuestion = async () => {
     const id = this.props.match.params.id 
     console.log(id)
 
@@ -22,7 +26,8 @@ class Question extends Component {
     console.log(questionResponse)
 
     this.setState({
-      question: questionResponse 
+      question: questionResponse,
+      commentInput: ''
     })
   }
 
@@ -35,14 +40,29 @@ class Question extends Component {
   handleSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await createComment({
-      content: this.state.commentInput,
-      question_id: this.state.question.id,
-      user_id: this.props.user.id
-    })
-    console.log(response)
+    try {
+      const response = await createComment({
+        content: this.state.commentInput,
+        question_id: this.state.question.id,
+        user_id: this.props.user.id
+      })
+      console.log(response)
 
-    window.location.reload()
+      this.initializeQuestion()
+    } catch (er) {
+      console.log(er)
+    }
+  }
+
+  handleDeleteComment = async (id) => {
+    try {
+      const response = await deleteComment(id)
+      console.log(response)
+
+      this.initializeQuestion()
+    } catch (er) {
+    console.log(er)
+    }
   }
 
   render() {
@@ -95,6 +115,11 @@ class Question extends Component {
               <div className="comment" key={ind}> 
                 <p> <strong> From: </strong> {comment.user.username} </p>
                 <p>{comment.content}</p>
+                {
+                  this.props.user.id === comment.user.id ? (
+                    <button onClick={() => this.handleDeleteComment(comment.id)}>Delete</button>
+                  ) : null
+                }
               </div>
             ))
           }
