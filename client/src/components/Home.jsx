@@ -34,7 +34,7 @@ export default class Browse extends Component {
             this.state.questions.map((question, ind) => {
               return (
                 <div className="browseQuestion" key={ind}>
-                  <Link to={`/questions/${question.id}`} >
+                  <Link to={`/edit/${question.id}`} >
                     <p>{question.content}</p>
                     <h4>Difficulty: {question.difficulty}</h4>
                   </Link>
