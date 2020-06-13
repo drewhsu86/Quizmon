@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { createQuestion } from '../services/questions'
+import { createQuestion, getAllTopics } from '../services/questions'
   
 export default class Edit extends Component {
   constructor(props) {
@@ -14,14 +14,37 @@ export default class Edit extends Component {
       answer_b: '',
       answer_c: '',
       answer_d: '',
-      make_private: "false" 
+      make_private: false,
+      topics: [],
+      topic_id: 0 // 0 shouldn't exist as a topic id in db 
     }
   }
+
+  async componentDidMount() {
+    const topicResponse = await getAllTopics()
+    console.log(topicResponse)
+
+    if (topicResponse.length > 0) {
+      this.setState({
+        topics: topicResponse,
+        topic_id: topicResponse[0].id
+      })
+    }
+  } 
 
   handleChange = (e, whichState) => {
     console.log('handleChange: ', whichState)
     this.setState({
       [whichState]: e.target.value 
+    })
+  }
+
+  handleTopicOption = (e) => {
+    // ID is in e.target.value, but we want to convert ID 
+    // from string to an integer 
+    console.log('handleTopicOption: ', e.target.value)
+    this.setState({
+      topic_id: parseInt(e.target.value)
     })
   }
 
@@ -36,7 +59,9 @@ export default class Edit extends Component {
       answer_b: this.state.answer_b,
       answer_c: this.state.answer_c,
       answer_d: this.state.answer_d,
-      private: !!this.state.make_private
+      private: this.state.make_private,
+      user_id: this.props.user.id,
+      topic_id: this.state.topic_id
     }
 
     try {
@@ -49,6 +74,13 @@ export default class Edit extends Component {
 
   render() {
     console.log(this.state)
+    if (this.state.topics.length <= 0) {
+      return (
+        <div className="questionCreate">
+          <h1> Page is loading... </h1>
+        </div>
+      )
+    } else {
       return (
         <div className="questionCreate">
 
@@ -59,6 +91,18 @@ export default class Edit extends Component {
               value={this.state.content}
               onChange={e => this.handleChange(e, 'content')}
             ></textarea>
+
+            <label htmlFor="topic">Topic</label>
+            <select
+              id="topic"
+              onChange={this.handleTopicOption}
+            >
+              {
+                this.state.topics.map((topic) => {
+                  return <option value={topic.id}>{topic.name}</option>
+                })
+              }
+            </select>
 
             <label htmlFor="correctAnswers">Correct Answer</label>
             <select
@@ -88,8 +132,8 @@ export default class Edit extends Component {
               id="make_private"
               onChange={e => this.handleChange(e, 'make_private')}
             >
-              <option value="">Public</option>
-              <option value="true">Private</option>
+              <option value={false}>Public</option>
+              <option value={true}>Private</option>
             </select>
 
             <label htmlFor="answer_a">Answer 'A' Text</label>
@@ -126,5 +170,6 @@ export default class Edit extends Component {
         </div>
       )
     }
+  }
   
 }

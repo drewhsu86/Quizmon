@@ -27,6 +27,9 @@ export default class Browse extends Component {
       return (
         <div className="browse">
           <h1>Home</h1>
+          <Link to="/create">
+            <button>Create A Question</button>
+          </Link>
           {
             this.state.questions.map((question, ind) => {
               return (

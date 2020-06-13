@@ -66,10 +66,10 @@ class App extends React.Component {
             {!this.state.user ? <Signup setUser={this.setUser} /> : <Logged logout={this.logout} />}
         </Route>
         <Route path="/home">
-          <Home user={this.state.user} />
+            {this.state.user ? <Home user={this.state.user} /> : <NotLogged  />}
         </Route>
         <Route path="/create">
-          <Create user={this.state.user} />
+            {this.state.user ? <Create user={this.state.user} /> : <NotLogged  />}
         </Route>
         </main>
       </div>
