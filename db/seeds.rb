@@ -13,7 +13,7 @@ Topic.destroy_all
 User.destroy_all 
 
 @user1 = User.create!({ username: 'memer5000', email: 'popandlock@email.com', password: '123456' })
-@user = User.create!({ username: 'andrew1', email: 'andrew1@email.com', password: '123321' })
+@user2 = User.create!({ username: 'andrew1', email: 'andrew1@email.com', password: '123321' })
 
 p "#{User.count} user(s) created"
 
@@ -23,10 +23,15 @@ p "#{User.count} user(s) created"
 
 p "#{Topic.count} topic(s) created"
 
-Question.create!({content: 'Javascript test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @javascript, difficulty: 1 })
+@q1 = Question.create!({content: 'Javascript test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user2,topic: @javascript, difficulty: 1 })
 
-Question.create!({content: 'Ruby test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @ruby, difficulty: 1 })
+@q2 = Question.create!({content: 'Ruby test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user2,topic: @ruby, difficulty: 1 })
 
-Question.create!({content: 'Data structure test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @data_structures, difficulty: 1 })
+@q3 = Question.create!({content: 'Data structure test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user2,topic: @data_structures, difficulty: 1 })
 
 p "#{Question.count} question(s) created"
+
+Comment.create!({content: 'Javascript is cool', user: @user1, question: @q1})
+Comment.create!({content: 'I also think Javascript is cool', user: @user2, question: @q1})
+
+p "#{Comment.count} comment(s) created"

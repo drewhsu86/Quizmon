@@ -6207,3 +6207,521 @@ Completed 200 OK in 28ms (Views: 0.5ms | ActiveRecord: 23.4ms | Allocations: 259
 Completed 200 OK in 46ms (Views: 10.3ms | ActiveRecord: 31.6ms | Allocations: 4571)
 
 
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (41.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (160.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quizmon_development"[0m
+  [1m[35m (162.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quizmon_test"[0m
+  [1m[35m (682.8ms)[0m  [1m[35mCREATE DATABASE "quizmon_development" ENCODING = 'unicode'[0m
+  [1m[35m (304.6ms)[0m  [1m[35mCREATE DATABASE "quizmon_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments" CASCADE[0m
+  [1m[35m (18.7ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" character varying, "user_id" bigint NOT NULL, "question_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_question_id" ON "comments"  ("question_id")[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "completeds" CASCADE[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "completeds" ("id" bigserial primary key, "user_id" bigint NOT NULL, "question_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE  INDEX  "index_completeds_on_question_id" ON "completeds"  ("question_id")[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE  INDEX  "index_completeds_on_user_id" ON "completeds"  ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "questions" CASCADE[0m
+  [1m[35m (53.3ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "content" character varying, "correct_answer" character varying, "answer_a" character varying, "answer_b" character varying, "answer_c" character varying, "answer_d" character varying, "private" boolean, "user_id" bigint NOT NULL, "topic_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "difficulty" integer)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE  INDEX  "index_questions_on_topic_id" ON "questions"  ("topic_id")[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE  INDEX  "index_questions_on_user_id" ON "questions"  ("user_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "topics" CASCADE[0m
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE TABLE "topics" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "email" character varying, "img_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.8ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_2f2557d9f5"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "completeds" ADD CONSTRAINT "fk_rails_6713694aac"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+[0m
+  [1m[35m (4.3ms)[0m  [1m[35mALTER TABLE "completeds" ADD CONSTRAINT "fk_rails_b10bb0df94"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "questions" ADD CONSTRAINT "fk_rails_fee3215432"
+FOREIGN KEY ("topic_id")
+  REFERENCES "topics" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "questions" ADD CONSTRAINT "fk_rails_047ab75908"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200611125721)[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200609150614),
+(20200609161148),
+(20200609161233),
+(20200610182117),
+(20200610182142);
+
+[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-06-13 21:33:01.545161"], ["updated_at", "2020-06-13 21:33:01.545161"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "201432c27be82efdb7fdf9fc08493f54e15891cf"], ["created_at", "2020-06-13 21:33:01.560126"], ["updated_at", "2020-06-13 21:33:01.560126"]]
+  [1m[35m (18.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments" CASCADE[0m
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" character varying, "user_id" bigint NOT NULL, "question_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_question_id" ON "comments"  ("question_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "completeds" CASCADE[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "completeds" ("id" bigserial primary key, "user_id" bigint NOT NULL, "question_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_completeds_on_question_id" ON "completeds"  ("question_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE  INDEX  "index_completeds_on_user_id" ON "completeds"  ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "questions" CASCADE[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "content" character varying, "correct_answer" character varying, "answer_a" character varying, "answer_b" character varying, "answer_c" character varying, "answer_d" character varying, "private" boolean, "user_id" bigint NOT NULL, "topic_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "difficulty" integer)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_questions_on_topic_id" ON "questions"  ("topic_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE  INDEX  "index_questions_on_user_id" ON "questions"  ("user_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "topics" CASCADE[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "topics" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (10.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "email" character varying, "img_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (11.2ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_2f2557d9f5"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.9ms)[0m  [1m[35mALTER TABLE "completeds" ADD CONSTRAINT "fk_rails_6713694aac"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+[0m
+  [1m[35m (4.0ms)[0m  [1m[35mALTER TABLE "completeds" ADD CONSTRAINT "fk_rails_b10bb0df94"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "questions" ADD CONSTRAINT "fk_rails_fee3215432"
+FOREIGN KEY ("topic_id")
+  REFERENCES "topics" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "questions" ADD CONSTRAINT "fk_rails_047ab75908"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200611125721)[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200609150614),
+(20200609161148),
+(20200609161233),
+(20200610182117),
+(20200610182142);
+
+[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-06-13 21:33:01.858006"], ["updated_at", "2020-06-13 21:33:01.858006"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-06-13 21:33:01.869698"], ["key", "environment"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "201432c27be82efdb7fdf9fc08493f54e15891cf"], ["created_at", "2020-06-13 21:33:01.879060"], ["updated_at", "2020-06-13 21:33:01.879060"]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCompleted Load (1.2ms)[0m  [1m[34mSELECT "completeds".* FROM "completeds"[0m
+  [1m[36mComment Load (4.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  [1m[36mTopic Load (1.0ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "memer5000"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "popandlock@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "memer5000"], ["password_digest", "$2a$12$9kPqusnmDfAIr8oZ16n7je5w5GC2usgh93xw6SBsVHsjStGHpi.dW"], ["email", "popandlock@email.com"], ["created_at", "2020-06-13 21:33:02.379555"], ["updated_at", "2020-06-13 21:33:02.379555"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrew1"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "andrew1@email.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "andrew1"], ["password_digest", "$2a$12$Z314GJiA6ccVVmXk7SnJrebJ1.fogRAuuyIJVY9uIfisTNEigAhF2"], ["email", "andrew1@email.com"], ["created_at", "2020-06-13 21:33:02.714478"], ["updated_at", "2020-06-13 21:33:02.714478"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (1.5ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Javascript"], ["created_at", "2020-06-13 21:33:02.744466"], ["updated_at", "2020-06-13 21:33:02.744466"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.4ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Ruby"], ["created_at", "2020-06-13 21:33:02.754632"], ["updated_at", "2020-06-13 21:33:02.754632"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTopic Create (0.4ms)[0m  [1m[32mINSERT INTO "topics" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Data structures"], ["created_at", "2020-06-13 21:33:02.759934"], ["updated_at", "2020-06-13 21:33:02.759934"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "topics"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Create (1.5ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at", "difficulty") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["content", "Javascript test question, the answer is C."], ["correct_answer", "c"], ["answer_a", "test answer A"], ["answer_b", "test answer B"], ["answer_c", "test answer C"], ["answer_d", "test answer D"], ["private", false], ["user_id", 2], ["topic_id", 1], ["created_at", "2020-06-13 21:33:02.795047"], ["updated_at", "2020-06-13 21:33:02.795047"], ["difficulty", 1]]
+  [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Create (0.8ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at", "difficulty") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["content", "Ruby test question, the answer is C."], ["correct_answer", "c"], ["answer_a", "test answer A"], ["answer_b", "test answer B"], ["answer_c", "test answer C"], ["answer_d", "test answer D"], ["private", false], ["user_id", 2], ["topic_id", 2], ["created_at", "2020-06-13 21:33:02.842571"], ["updated_at", "2020-06-13 21:33:02.842571"], ["difficulty", 1]]
+  [1m[35m (33.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQuestion Create (1.2ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at", "difficulty") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["content", "Data structure test question, the answer is C."], ["correct_answer", "c"], ["answer_a", "test answer A"], ["answer_b", "test answer B"], ["answer_c", "test answer C"], ["answer_d", "test answer D"], ["private", false], ["user_id", 2], ["topic_id", 3], ["created_at", "2020-06-13 21:33:02.883493"], ["updated_at", "2020-06-13 21:33:02.883493"], ["difficulty", 1]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mComment Create (1.4ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Javascript is cool"], ["user_id", 1], ["question_id", 1], ["created_at", "2020-06-13 21:33:02.915272"], ["updated_at", "2020-06-13 21:33:02.915272"]]
+  [1m[35m (41.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mComment Create (1.2ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "question_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "I also think Javascript is cool"], ["user_id", 2], ["question_id", 1], ["created_at", "2020-06-13 21:33:02.965835"], ["updated_at", "2020-06-13 21:33:02.965835"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+Started GET "/questions/1" for ::1 at 2020-06-13 17:49:29 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:49:29 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/app/controllers/questions_controller.rb:72: syntax error, unexpected ']', expecting '}'
+...de: [{user: {only: [:name]}}]}] 
+...                              ^
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/app/controllers/questions_controller.rb:120: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/questions_controller.rb:72: syntax error, unexpected ']', expecting '}'
+app/controllers/questions_controller.rb:120: syntax error, unexpected end-of-input, expecting end
+app/controllers/questions_controller.rb:72: syntax error, unexpected ']', expecting '}'
+app/controllers/questions_controller.rb:120: syntax error, unexpected end-of-input, expecting end
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 831ms (Views: 1.2ms | ActiveRecord: 629.1ms | Allocations: 101410)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:49:54 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:49:54 -0400
+  
+SyntaxError (/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/app/controllers/questions_controller.rb:72: syntax error, unexpected ']', expecting '}'
+...de: [{user: {only: [:name]}}]}] 
+...                              ^
+/Users/bowserhsu/Documents/GA_Docs/GAsei/unit4/project4/Quizmon/app/controllers/questions_controller.rb:120: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/questions_controller.rb:72: syntax error, unexpected ']', expecting '}'
+app/controllers/questions_controller.rb:120: syntax error, unexpected end-of-input, expecting end
+app/controllers/questions_controller.rb:72: syntax error, unexpected ']', expecting '}'
+app/controllers/questions_controller.rb:120: syntax error, unexpected end-of-input, expecting end
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (109.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 133ms (Views: 0.9ms | ActiveRecord: 109.1ms | Allocations: 42659)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:51:40 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:51:40 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (3.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (4.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 704ms (Views: 413.8ms | ActiveRecord: 215.5ms | Allocations: 33194)
+
+
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 35ms (Views: 0.5ms | ActiveRecord: 12.1ms | Allocations: 7027)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:52:56 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:52:56 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (98.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 101ms (Views: 0.5ms | ActiveRecord: 98.7ms | Allocations: 893)
+
+
+  [1m[36mQuestion Load (28.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (0.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 750ms (Views: 350.6ms | ActiveRecord: 354.8ms | Allocations: 25795)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:53:40 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:53:40 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (96.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTopic Load (2.3ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 11ms (Views: 0.7ms | ActiveRecord: 5.6ms | Allocations: 2433)
+
+
+  [1m[36mComment Load (12.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (8.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 144ms (Views: 18.9ms | ActiveRecord: 122.0ms | Allocations: 6776)
+
+
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:54:37 -0400
+Started GET "/questions/1" for ::1 at 2020-06-13 17:54:37 -0400
+Processing by AuthenticationController#verify as HTML
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (0.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (10.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 14ms (Views: 0.7ms | ActiveRecord: 10.3ms | Allocations: 2860)
+
+
+  [1m[36mComment Load (3.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (41.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 663ms (Views: 614.2ms | ActiveRecord: 47.2ms | Allocations: 6243)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:54:43 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:54:43 -0400
+  [1m[36mTopic Load (39.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mComment Load (13.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (16.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 20ms (Views: 0.6ms | ActiveRecord: 16.7ms | Allocations: 1893)
+
+
+  [1m[36mUser Load (29.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 101ms (Views: 13.1ms | ActiveRecord: 85.6ms | Allocations: 7117)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:55:18 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:55:18 -0400
+  [1m[36mQuestion Load (249.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (1.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.8ms | ActiveRecord: 2.1ms | Allocations: 1173)
+
+
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 281ms (Views: 18.4ms | ActiveRecord: 257.8ms | Allocations: 7146)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:55:20 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:55:20 -0400
+Processing by QuestionsController#show as HTML
+Processing by AuthenticationController#verify as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (267.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 270ms (Views: 0.4ms | ActiveRecord: 267.7ms | Allocations: 989)
+
+
+  [1m[36mQuestion Load (268.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (7.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (6.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 308ms (Views: 15.4ms | ActiveRecord: 287.9ms | Allocations: 6182)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:56:17 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:56:17 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (0.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (1.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 569ms (Views: 223.4ms | ActiveRecord: 259.1ms | Allocations: 30276)
+
+
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 49ms (Views: 0.4ms | ActiveRecord: 12.5ms | Allocations: 7026)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:57:24 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:57:24 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (533.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 536ms (Views: 0.5ms | ActiveRecord: 533.9ms | Allocations: 1046)
+
+
+  [1m[36mQuestion Load (30.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (1.3ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (1.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 1200ms (Views: 253.3ms | ActiveRecord: 701.8ms | Allocations: 25848)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:57:42 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:57:42 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mTopic Load (76.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (26.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (91.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 94ms (Views: 0.7ms | ActiveRecord: 91.0ms | Allocations: 2890)
+
+
+  [1m[36mUser Load (73.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (29.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 224ms (Views: 12.7ms | ActiveRecord: 207.9ms | Allocations: 6799)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:57:50 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:57:50 -0400
+  [1m[36mTopic Load (497.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (82.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 86ms (Views: 1.1ms | ActiveRecord: 82.1ms | Allocations: 896)
+
+
+  [1m[36mComment Load (303.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (50.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (64.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 937ms (Views: 16.3ms | ActiveRecord: 916.2ms | Allocations: 7154)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:58:03 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:58:04 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (4.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 4.1ms | Allocations: 893)
+
+
+  [1m[36mQuestion Load (50.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (1.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (14.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (30.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 111ms (Views: 12.0ms | ActiveRecord: 96.9ms | Allocations: 6798)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:58:25 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:58:25 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (5.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (8.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (13.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 5.4ms | Allocations: 893)
+
+
+  [1m[36mUser Load (113.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (51.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 212ms (Views: 17.3ms | ActiveRecord: 191.8ms | Allocations: 6798)
+
+

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { getOneQuestion } from '../services/questions'
+import { createComment, deleteComment } from '../services/comments'
 
 class Question extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       question: null,
-      guessedAnswer: ''
+      guessedAnswer: '',
+      commentInput: ''
     }
   }
 
@@ -30,6 +32,10 @@ class Question extends Component {
     })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     const question = this.state.question
 
@@ -45,7 +51,7 @@ class Question extends Component {
             <div className="questionAnswers">
               {
                 ['a', 'b', 'c', 'd'].map(letter => (
-                  <div className="questionAnswer"
+                  <div className="questionAnswer"  key={letter} 
                     style={this.state.guessedAnswer === letter ? (this.state.guessedAnswer === this.state.question.correct_answer ? { backgroundColor: 'green' } : { backgroundColor: 'red' }) : (letter === this.state.question.correct_answer ? { backgroundColor: 'green' } : null)}
                   >
                     {question['answer_' + letter]}
@@ -56,7 +62,7 @@ class Question extends Component {
             <div className="questionAnswers">
               {
                 ['a', 'b', 'c', 'd'].map(letter => (
-                  <div className="questionAnswer"
+                  <div className="questionAnswer" key={letter}
                     onClick={() => {this.handleAnswer(letter)}}
                   >
                     {question['answer_' + letter]}
@@ -64,7 +70,23 @@ class Question extends Component {
                 ))
               }              
             </div> )
-            }
+          }
+          
+          <h3>Post a Comment</h3>
+          <form onSubmit={this.handleSubmit}>
+            <textarea onChange={(e) => {this.setState({ commentInput: e.target.value })}} value={this.state.commentInput}></textarea>
+            <button>Submit Comment</button>
+          </form>
+          
+          <h3>Comments</h3> 
+          {
+            question.comments.map((comment, ind) => (
+              <div className="comment" key={ind}> 
+                <p> <strong> From: </strong> {comment.user.username} </p>
+                <p>{comment.content}</p>
+              </div>
+            ))
+          }
         </div>
       )
     

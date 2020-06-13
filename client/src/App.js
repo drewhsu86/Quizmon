@@ -58,7 +58,7 @@ class App extends React.Component {
           <Browse />
         </Route>
         <Route path="/questions/:id">
-          <Question />
+          <Question user={this.state.user} />
         </Route>
         <Route path="/signin">
             {!this.state.user ? <Signin setUser={this.setUser} /> : <Logged logout={this.logout} />}
