@@ -7,7 +7,8 @@ class Question extends Component {
     super()
 
     this.state = {
-      question: null 
+      question: null,
+      guessedAnswer: ''
     }
   }
 
@@ -29,7 +30,6 @@ class Question extends Component {
     if (question) {
       return (
         <div className="questionShow">
-          Question page
           <h3> {question.topic.name} Question </h3>
           <h4> Difficulty: {question.difficulty} </h4>
           <p>

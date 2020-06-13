@@ -13,6 +13,7 @@ Topic.destroy_all
 User.destroy_all 
 
 @user = User.create!({ username: 'memer5000', email: 'popandlock@email.com', password: '123456' })
+@user = User.create!({ username: 'andrew1', email: 'andrew1@email.com', password: '123321' })
 
 p "#{User.count} user(s) created"
 
@@ -24,7 +25,7 @@ p "#{Topic.count} topic(s) created"
 
 Question.create!({content: 'Javascript test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @javascript, difficulty: 1 })
 
-Question.create!({content: 'Javascript test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @ruby, difficulty: 1 })
+Question.create!({content: 'Ruby test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @ruby, difficulty: 1 })
 
 Question.create!({content: 'Data structure test question, the answer is C.',correct_answer: 'c', answer_a: 'test answer A', answer_b: 'test answer B',answer_c: 'test answer C',answer_d: 'test answer D',private: false,user: @user,topic: @data_structures, difficulty: 1 })
 
