@@ -6034,3 +6034,176 @@ Processing by QuestionsController#show as HTML
 Completed 200 OK in 14ms (Views: 6.8ms | ActiveRecord: 2.5ms | Allocations: 3538)
 
 
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:09:55 -0400
+Started GET "/questions/1" for ::1 at 2020-06-13 17:09:55 -0400
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (56.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 105ms (Views: 1.7ms | ActiveRecord: 62.7ms | Allocations: 20064)
+
+
+  [1m[36mTopic Load (27.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 243ms (Views: 125.7ms | ActiveRecord: 55.3ms | Allocations: 30830)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:11:49 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:11:49 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (41.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mUser Load (73.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (46.0ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 77ms (Views: 0.7ms | ActiveRecord: 73.5ms | Allocations: 1734)
+
+
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (108.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 212ms (Views: 14.0ms | ActiveRecord: 195.8ms | Allocations: 4479)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:13:09 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:13:09 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 4.4ms | Allocations: 894)
+
+
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (3.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 328ms (Views: 321.8ms | ActiveRecord: 4.7ms | Allocations: 2903)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:13:15 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:13:15 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (15.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mUser Load (20.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTopic Load (4.4ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 24ms (Views: 0.4ms | ActiveRecord: 20.1ms | Allocations: 2421)
+
+
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (13.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 45ms (Views: 9.5ms | ActiveRecord: 33.5ms | Allocations: 4460)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:13:53 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:13:53 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (9.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mUser Load (32.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 38ms (Views: 1.2ms | ActiveRecord: 32.8ms | Allocations: 1689)
+
+
+  [1m[36mTopic Load (51.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (24.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 96ms (Views: 7.3ms | ActiveRecord: 84.9ms | Allocations: 4461)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:13:58 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:13:58 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (11.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (1.0ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (10.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 10.8ms | Allocations: 2703)
+
+
+  [1m[36mComment Load (17.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 39ms (Views: 6.4ms | ActiveRecord: 29.9ms | Allocations: 4483)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:14:00 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:14:00 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (6.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Processing by AuthenticationController#verify as HTML
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (2.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 1.7ms | Allocations: 1250)
+
+
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (21.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 42ms (Views: 7.7ms | ActiveRecord: 30.7ms | Allocations: 4460)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:14:03 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:14:03 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 7ms (Views: 1.4ms | ActiveRecord: 1.4ms | Allocations: 893)
+
+
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+  [1m[36mTopic Load (0.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 12ms (Views: 7.1ms | ActiveRecord: 2.0ms | Allocations: 2873)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 17:14:05 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+Started GET "/auth/verify" for ::1 at 2020-06-13 17:14:05 -0400
+  [1m[36mQuestion Load (8.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:48:in `show'
+Processing by AuthenticationController#verify as HTML
+  [1m[36mTopic Load (2.4ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+  [1m[36mUser Load (23.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mComment Load (20.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  ↳ app/controllers/questions_controller.rb:72:in `show'
+Completed 200 OK in 28ms (Views: 0.5ms | ActiveRecord: 23.4ms | Allocations: 2591)
+
+
+Completed 200 OK in 46ms (Views: 10.3ms | ActiveRecord: 31.6ms | Allocations: 4571)
+
+

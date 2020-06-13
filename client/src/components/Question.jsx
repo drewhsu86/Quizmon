@@ -24,6 +24,12 @@ class Question extends Component {
     })
   }
 
+  handleAnswer = (letter) => {
+    this.setState({
+      guessedAnswer: letter
+    })
+  }
+
   render() {
     const question = this.state.question
 
@@ -35,20 +41,30 @@ class Question extends Component {
           <p>
             {question.content}
           </p>
-          <div className="questionAnswers">
-              <div className="questionAnswer">
-                {question.answer_a}
-              </div>
-              <div className="questionAnswer">
-                {question.answer_b}
-              </div>
-              <div className="questionAnswer">
-                {question.answer_c}
-              </div>
-              <div className="questionAnswer">
-                {question.answer_d}
-              </div>
-          </div>
+          {this.state.guessedAnswer ? (
+            <div className="questionAnswers">
+              {
+                ['a', 'b', 'c', 'd'].map(letter => (
+                  <div className="questionAnswer"
+                    style={this.state.guessedAnswer === letter ? (this.state.guessedAnswer === this.state.question.correct_answer ? { backgroundColor: 'green' } : { backgroundColor: 'red' }) : (letter === this.state.question.correct_answer ? { backgroundColor: 'green' } : null)}
+                  >
+                    {question['answer_' + letter]}
+                  </div>
+                ))
+              }              
+            </div> ) : (
+            <div className="questionAnswers">
+              {
+                ['a', 'b', 'c', 'd'].map(letter => (
+                  <div className="questionAnswer"
+                    onClick={() => {this.handleAnswer(letter)}}
+                  >
+                    {question['answer_' + letter]}
+                  </div>
+                ))
+              }              
+            </div> )
+            }
         </div>
       )
     
