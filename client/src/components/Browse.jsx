@@ -8,7 +8,8 @@ export default class Browse extends Component {
 
     this.state = {
       questions: [],
-      topics: []
+      topics: [],
+      chosenTopicId: 0
     }
   }
 
@@ -23,7 +24,9 @@ export default class Browse extends Component {
     console.log(questionResponse)
 
     this.setState({
-      questions: questionResponse 
+      topics: topicResponse,
+      questions: questionResponse,
+      chosenTopicId: topic_id 
     })
   }
 

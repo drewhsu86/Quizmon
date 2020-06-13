@@ -97,7 +97,7 @@ export default class Edit extends Component {
             >
               {
                 this.state.topics.map((topic) => {
-                  return <option value={topic.id}>{topic.name}</option>
+                  return <option value={topic.id} key={topic.id}>{topic.name}</option>
                 })
               }
             </select>
