@@ -32,8 +32,17 @@ class Question extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault()
+
+    const response = await createComment({
+      content: this.state.commentInput,
+      question_id: this.state.question.id,
+      user_id: this.props.user.id
+    })
+    console.log(response)
+
+    window.location.reload()
   }
 
   render() {
@@ -72,11 +81,13 @@ class Question extends Component {
             </div> )
           }
           
-          <h3>Post a Comment</h3>
-          <form onSubmit={this.handleSubmit}>
-            <textarea onChange={(e) => {this.setState({ commentInput: e.target.value })}} value={this.state.commentInput}></textarea>
-            <button>Submit Comment</button>
-          </form>
+          { this.props.user ? (<>
+            <h3>Post a Comment</h3>
+            <form onSubmit={this.handleSubmit}>
+              <textarea onChange={(e) => { this.setState({ commentInput: e.target.value }) }} value={this.state.commentInput}></textarea>
+              <button>Submit Comment</button>
+            </form>
+          </>) : null}
           
           <h3>Comments</h3> 
           {
