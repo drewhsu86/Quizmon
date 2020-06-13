@@ -12,7 +12,7 @@ Question.destroy_all
 Topic.destroy_all 
 User.destroy_all 
 
-@user = User.create!({ username: 'memer5000', email: 'popandlock@email.com', password: '123456' })
+@user1 = User.create!({ username: 'memer5000', email: 'popandlock@email.com', password: '123456' })
 @user = User.create!({ username: 'andrew1', email: 'andrew1@email.com', password: '123321' })
 
 p "#{User.count} user(s) created"

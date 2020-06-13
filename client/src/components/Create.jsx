@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { createQuestion, getAllTopics } from '../services/questions'
   
-export default class Edit extends Component {
+class Create extends Component {
   constructor(props) {
     super(props)
 
@@ -58,8 +58,9 @@ export default class Edit extends Component {
 
     try {
       const response = await createQuestion(questionData)
-
       console.log(response)
+
+      this.props.history.push('/home')
     } catch (er) {
       console.log(er)
     }
@@ -171,3 +172,5 @@ export default class Edit extends Component {
   }
   
 }
+
+export default withRouter(Create)

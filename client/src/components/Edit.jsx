@@ -101,8 +101,9 @@ class Edit extends Component {
 
     try {
       const response = await editQuestion(this.props.match.params.id, questionData)
-
       console.log(response)
+
+      this.props.history.push('/home')
     } catch (er) {
       console.log(er) 
     }
