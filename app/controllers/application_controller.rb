@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   # everything here is inherited by all 
   # new controllers that we write 
-  SECRET_KEY = Rails.env === 'production' ? ENV['SECRET_KEY'] : Rails.application.secrets.secret_key_base.to_s
+  SECRET_KEY = Rails.env == 'production' ? ENV['SECRET_KEY'] : Rails.application.secrets.secret_key_base.to_s
 
   def encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i

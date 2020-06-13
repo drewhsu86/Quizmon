@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users, only: [:username]
   end
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user, only: [:username, :id]
   end
 
   # POST /users
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @token = encode({ user_id: @user.id })
       render json: { token: @token, user: @user }, status: :created, location: @user
     else
-      render json: @user.errors, only: [:id, :username], status: :unprocessable_entity
+      render json: @user.errors, only: [:username, :id], status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors, only: [:username, :id], status: :unprocessable_entity
     end
   end
 

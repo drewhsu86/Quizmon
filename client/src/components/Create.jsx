@@ -16,7 +16,8 @@ export default class Edit extends Component {
       answer_d: '',
       make_private: false,
       topics: [],
-      topic_id: 0 // 0 shouldn't exist as a topic id in db 
+      topic_id: 0, // 0 shouldn't exist as a topic id in db 
+      msg: ''
     }
   }
 
@@ -39,15 +40,6 @@ export default class Edit extends Component {
     })
   }
 
-  handleTopicOption = (e) => {
-    // ID is in e.target.value, but we want to convert ID 
-    // from string to an integer 
-    console.log('handleTopicOption: ', e.target.value)
-    this.setState({
-      topic_id: parseInt(e.target.value)
-    })
-  }
-
   handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -65,7 +57,9 @@ export default class Edit extends Component {
     }
 
     try {
-      await createQuestion(questionData)
+      const response = await createQuestion(questionData)
+
+      console.log(response)
     } catch (er) {
       console.log(er)
     }
@@ -84,6 +78,10 @@ export default class Edit extends Component {
       return (
         <div className="questionCreate">
 
+          {
+            this.state.msg ? <h1>{this.state.msg}</h1> : null
+          }
+
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="questionText">Question Text</label>
             <textarea
@@ -95,7 +93,7 @@ export default class Edit extends Component {
             <label htmlFor="topic">Topic</label>
             <select
               id="topic"
-              onChange={this.handleTopicOption}
+              onChange={e => this.handleChange(e, 'topic_id')}
             >
               {
                 this.state.topics.map((topic) => {
