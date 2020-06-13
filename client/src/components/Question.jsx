@@ -116,7 +116,7 @@ class Question extends Component {
                 <p> <strong> From: </strong> {comment.user.username} </p>
                 <p>{comment.content}</p>
                 {
-                  this.props.user.id === comment.user.id ? (
+                  this.props.user && this.props.user.id === comment.user.id ? (
                     <button onClick={() => this.handleDeleteComment(comment.id)}>Delete</button>
                   ) : null
                 }
