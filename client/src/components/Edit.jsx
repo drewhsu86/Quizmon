@@ -125,6 +125,8 @@ class Edit extends Component {
             Delete This Question?
           </button>
 
+          <h1>Edit/Delete a question</h1>
+
           {
             this.state.msg ? <h1>{this.state.msg}</h1> : null
           } 

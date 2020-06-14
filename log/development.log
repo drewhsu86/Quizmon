@@ -9827,3 +9827,147 @@ Processing by QuestionsController#index as HTML
 Completed 200 OK in 9ms (Views: 3.5ms | ActiveRecord: 4.9ms | Allocations: 1395)
 
 
+Started GET "/topics" for ::1 at 2020-06-13 20:48:18 -0400
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 52ms (Views: 35.4ms | ActiveRecord: 6.1ms | Allocations: 5359)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-13 20:48:18 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 69ms (Views: 33.2ms | ActiveRecord: 19.6ms | Allocations: 13010)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-13 20:48:20 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (1.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 141ms (Views: 12.7ms | ActiveRecord: 26.1ms | Allocations: 8568)
+
+
+Started GET "/topics" for ::1 at 2020-06-13 20:48:22 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (13.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 23ms (Views: 8.8ms | ActiveRecord: 13.8ms | Allocations: 1154)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-13 20:48:24 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (8.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 28ms (Views: 6.6ms | ActiveRecord: 10.1ms | Allocations: 2473)
+
+
+Started GET "/topics" for ::1 at 2020-06-13 20:48:25 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.6ms | Allocations: 1154)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 20:48:25 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (4.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:57:in `show'
+  [1m[36mCompleted Load (0.9ms)[0m  [1m[34mSELECT "completeds".* FROM "completeds" WHERE "completeds"."user_id" = $1 AND "completeds"."question_id" = $2 LIMIT $3[0m  [["user_id", 2], ["question_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mComment Load (2.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mUser Load (8.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+Completed 200 OK in 141ms (Views: 77.8ms | ActiveRecord: 35.6ms | Allocations: 16336)
+
+
+Started GET "/auth/verify" for ::1 at 2020-06-13 20:48:45 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (65.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 69ms (Views: 0.6ms | ActiveRecord: 65.8ms | Allocations: 933)
+
+
+Started GET "/topics" for ::1 at 2020-06-13 20:48:45 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (6.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 3.1ms | ActiveRecord: 6.7ms | Allocations: 1135)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 20:48:45 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (6.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:57:in `show'
+  [1m[36mCompleted Load (25.5ms)[0m  [1m[34mSELECT "completeds".* FROM "completeds" WHERE "completeds"."user_id" = $1 AND "completeds"."question_id" = $2 LIMIT $3[0m  [["user_id", 2], ["question_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mTopic Load (9.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mComment Load (2.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+Completed 200 OK in 75ms (Views: 23.2ms | ActiveRecord: 45.4ms | Allocations: 8052)
+
+
+Started GET "/auth/verify" for ::1 at 2020-06-13 20:49:12 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (11.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 14ms (Views: 0.4ms | ActiveRecord: 11.3ms | Allocations: 894)
+
+
+Started GET "/topics" for ::1 at 2020-06-13 20:49:12 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.6ms | Allocations: 1135)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-13 20:49:12 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:57:in `show'
+  [1m[36mCompleted Load (10.0ms)[0m  [1m[34mSELECT "completeds".* FROM "completeds" WHERE "completeds"."user_id" = $1 AND "completeds"."question_id" = $2 LIMIT $3[0m  [["user_id", 2], ["question_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mTopic Load (0.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mComment Load (8.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:81:in `show'
+Completed 200 OK in 48ms (Views: 22.3ms | ActiveRecord: 20.2ms | Allocations: 8052)
+
+

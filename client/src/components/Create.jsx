@@ -78,7 +78,7 @@ class Create extends Component {
     } else {
       return (
         <div className="questionCreate">
-
+          <h1>Create a question</h1>
           {
             this.state.msg ? <h1>{this.state.msg}</h1> : null
           }
