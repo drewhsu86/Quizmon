@@ -21,7 +21,6 @@ export default class Browse extends Component {
     const topic_id = topicResponse[0].id 
 
     const questionResponse = await getQuestions(false, topic_id) 
-    console.log(questionResponse)
 
     this.setState({
       topics: topicResponse,
