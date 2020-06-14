@@ -25,7 +25,7 @@ class App extends React.Component {
   async componentDidMount() {
     // verify user using jwt if one can be found in localstorage  
     const response = await verifyUser()
-    console.log(response)
+    // console.log(response)
 
     if (response) {
       this.setUser(response.username, response.id)
@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   setUser = (username, id) => {
-    console.log('setting user: ', username, ':', id)
+    // console.log('setting user: ', username, ':', id)
     this.setState({
       user: {
         username,

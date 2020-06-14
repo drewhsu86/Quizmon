@@ -78,7 +78,7 @@ class QuestionsController < ApplicationController
 
     # render json: {question: @question, my_completed: @my_completed}.to_json, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content]}}] 
 
-    render json: @question, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content], include: [{user: {only: [:username, :id]}}]}} ] 
+    render json: @question, include: [ {topic: {only: [:id, :name]}}, {comments: {only: [:id, :content], include: [{user: {only: [:username, :id]}}]}}, {user: {only: [:username, :id]}} ] 
   end
 
   # POST /questions

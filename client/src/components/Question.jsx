@@ -65,13 +65,14 @@ class Question extends Component {
 
   render() {
     const question = this.state.question
-
+    
     if (question) {
       return (
         <div className="questionShow">
           <div className="questionInfo">
             <h3> {question.topic.name} Question </h3>
-            <h4> Difficulty: {question.difficulty} </h4>
+            <h4> &nbsp; Difficulty: {question.difficulty} </h4>
+            <h4> &nbsp; Written By: <i>{question.user.username}</i> </h4>
             <p>
             {question.content}
             </p>
