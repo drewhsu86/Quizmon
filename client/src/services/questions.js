@@ -12,7 +12,6 @@ export const getQuestions = async (myOwn, topic) => {
     if (myOwn) queries += '&' 
     queries += 'topic='+topic 
   }
-  console.log('getQuestion queries: ', queries)
 
   const resp = await api.get(`/questions${queries ? '?' + queries : ''}`);
   return resp.data;
