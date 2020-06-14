@@ -23,6 +23,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    document.title = 'Quizmon'
     // verify user using jwt if one can be found in localstorage  
     const response = await verifyUser()
     // console.log(response)
