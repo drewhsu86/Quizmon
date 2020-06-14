@@ -26,7 +26,7 @@ export default class Browse extends Component {
       return (
         <div className="browse">
           <div className="browseInfo">
-            <h1>Home - Your Quizmon Dashboard </h1>
+            <h1> Your Quizmon Dashboard </h1>
             <Link to="/create">
             <button>Create A Question</button>
             </Link>

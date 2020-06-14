@@ -1,0 +1,24 @@
+/*
+  if ? is always 20px less than the Q 
+  it should start 10px away from the top 
+*/
+
+.QLogo {
+  position: relative;
+  display: inline;
+  font-size: 70px;
+}
+
+.QLogoQuestionMark {
+  position: absolute;
+  top: 19px;
+  left: 12px;
+  width: 32px;
+  height: 41px;
+  background-color: #1100CC;
+  border-radius: 50%;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

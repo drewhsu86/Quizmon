@@ -13,6 +13,7 @@ import NotLogged from './components/NotLogged'
 import Home from './components/Home'
 import Create from './components/Create'
 import Edit from './components/Edit'
+import About from './components/About'
 
 class App extends React.Component {
   constructor() {
@@ -75,6 +76,9 @@ class App extends React.Component {
         </Route>
         <Route path="/edit/:id">
             {this.state.user ? <Edit user={this.state.user} /> : <NotLogged  />}
+        </Route>
+        <Route path="/about">
+            <About />
         </Route>
         </main>
       </div>
