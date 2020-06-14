@@ -15,7 +15,6 @@ export default class Browse extends Component {
   async componentDidMount() {
 
     const questionResponse = await getQuestions(true) 
-    console.log(questionResponse)
 
     this.setState({
       questions: questionResponse 
@@ -23,7 +22,6 @@ export default class Browse extends Component {
   }
 
   render() {
-    console.log('token', localStorage.getItem('authToken'))
     // if we are not logged in, return a 'you are not logged in' screen 
       return (
         <div className="browse">

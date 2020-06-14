@@ -16,7 +16,6 @@ export default class Browse extends Component {
 
   async componentDidMount() {
     const topicResponse = await getAllTopics()
-    console.log(topicResponse)
 
     // initialize questions with the first topic 
     const topic_id = topicResponse[0].id 

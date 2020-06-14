@@ -55,7 +55,6 @@ class Question extends Component {
   handleDeleteComment = async (id) => {
     try {
       const response = await deleteComment(id)
-      console.log(response)
 
       this.initializeQuestion()
     } catch (er) {

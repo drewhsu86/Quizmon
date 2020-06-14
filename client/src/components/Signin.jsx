@@ -27,7 +27,7 @@ class Signin extends Component {
     }
     try {
       const response = await loginUser(loginData)
-      console.log(response)
+      
       this.props.setUser(response.username, response.id)
       this.props.history.push('/home')
     } catch (er) {

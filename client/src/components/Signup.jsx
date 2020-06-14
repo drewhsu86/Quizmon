@@ -42,7 +42,7 @@ class Signup extends Component {
     }
     try {
       const response = await registerUser(registerData)
-      console.log(response)
+      
       this.props.setUser(response.username, response.id)
       this.props.history.push('/home')
     } catch (er) {
