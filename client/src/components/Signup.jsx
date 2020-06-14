@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './Signin.css'
 import { registerUser } from '../services/auth' 
+import { withRouter } from 'react-router-dom'
 
-export default class Signin extends Component {
+class Signup extends Component {
   constructor() {
     super() 
     this.state = {
@@ -43,6 +44,7 @@ export default class Signin extends Component {
       const response = await registerUser(registerData)
       console.log(response)
       this.props.setUser(response.username, response.id)
+      this.props.history.push('/home')
     } catch (er) {
       console.log(er)
       this.setState({
@@ -103,3 +105,5 @@ export default class Signin extends Component {
     )
   }
 }
+
+export default withRouter(Signup)

@@ -10,11 +10,20 @@ class QuestionsController < ApplicationController
     # we filter questions where id is user_id 
     @topic_id = params[:topic]
     @my_own = params[:my_own]
-    
-    if @topic_id == nil
+    @searchKeys = {}
+
+    if @topic_id != nil 
+      @searchKeys[:topic] = @topic_id 
+    end
+
+    if !@my_own || @my_own.downcase != 'true'
+      @searchKeys[:private] = false 
+    end
+
+    if @searchKeys.keys.length == 0
       @questions = Question.all
     else 
-      @questions = Question.where(topic_id: @topic_id)
+      @questions = Question.where(@searchKeys)
     end
 
     if @my_own && @my_own.downcase == 'true'

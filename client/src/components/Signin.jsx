@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './Signin.css'
 import { loginUser } from '../services/auth' 
+import { withRouter } from 'react-router-dom'
 
-export default class Signin extends Component {
+class Signin extends Component {
   constructor(props) {
     super(props) 
     this.state = {
@@ -28,6 +29,7 @@ export default class Signin extends Component {
       const response = await loginUser(loginData)
       console.log(response)
       this.props.setUser(response.username, response.id)
+      this.props.history.push('/home')
     } catch (er) {
       console.log(er)
       this.setState({
@@ -67,3 +69,5 @@ export default class Signin extends Component {
     )
   }
 }
+
+export default withRouter(Signin)

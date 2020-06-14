@@ -42,7 +42,7 @@ class Edit extends Component {
           answer_b: questionResponse.answer_b,
           answer_c: questionResponse.answer_c,
           answer_d: questionResponse.answer_d,
-          make_private: questionResponse.make_private,
+          make_private: questionResponse.private,
           user_id: this.props.user.id,
           topic_id: questionResponse.topic_id,
           topics: topicResponse,
@@ -165,6 +165,7 @@ class Edit extends Component {
             <select
               id="difficulty"
               onChange={e => this.handleChange(e, 'difficulty')}
+              defaultValue={this.state.difficulty}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -177,6 +178,7 @@ class Edit extends Component {
             <select
               id="make_private"
               onChange={e => this.handleChange(e, 'make_private')}
+              defaultValue={this.state.make_private}
             >
               <option value={false}>Public</option>
               <option value={true}>Private</option>
