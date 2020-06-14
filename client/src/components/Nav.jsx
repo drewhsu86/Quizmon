@@ -17,6 +17,10 @@ export default class Nav extends React.Component {
   }
 
   componentDidMount() {
+    
+  }
+
+  startInterval = () => {
     // interval in milliseconds 
     const intMS = 1000
     // create a setInterval 
@@ -39,10 +43,15 @@ export default class Nav extends React.Component {
       aboutMoveInterval: newInterval 
     })
   }
+
+  endInterval = () => {
+    clearInterval(this.state.aboutMoveInterval)
+  }
     
   bannerMouseEnter = (e) => {
     try {
       e.target.children[1].style = "display: block"
+      this.startInterval()
     } catch (er) {
       console.log(er)
     }
@@ -51,6 +60,7 @@ export default class Nav extends React.Component {
   bannerMouseLeave = (e) => {
     try {
       e.target.children[1].style = "display: none"
+      this.endInterval()
     } catch (er) {
       console.log(er)
     }
