@@ -1,0 +1,35 @@
+.browse {
+  display: flex;
+  flex-direction: column;
+}
+
+.browseInfo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+.browseQuestions {
+  background-color: lightgrey;
+  margin: 20px;
+  padding: 10px 20px;
+}
+
+.browseQuestions a {
+  color: black;
+  text-decoration: none;
+}
+
+.browseQuestion {
+  background-color: white;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 10px 20px;
+}
+
+.browseQuestion:hover {
+  background-color: lightblue;
+}
+

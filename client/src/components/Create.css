@@ -1,0 +1,25 @@
+.questionCreate {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.questionDelete {
+  min-height: 50px;
+  font-weight: bold;
+}
+
+.questionDelete:hover {
+  background-color: darkred;
+  color: white;
+}
+
+.questionCreate label {
+  margin: 20px 0 0 0;
+}
+
+.questionCreate textarea {
+  min-width: 50%;
+  min-height: 50px;
+}
+

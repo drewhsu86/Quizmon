@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Browse.css'
 import { Link } from 'react-router-dom'
 import { getQuestions } from '../services/questions'
 
@@ -26,10 +27,14 @@ export default class Browse extends Component {
     // if we are not logged in, return a 'you are not logged in' screen 
       return (
         <div className="browse">
-          <h1>Home</h1>
-          <Link to="/create">
+          <div className="browseInfo">
+            <h1>Home - Your Quizmon Dashboard </h1>
+            <Link to="/create">
             <button>Create A Question</button>
-          </Link>
+            </Link>
+          </div>
+          <div className="browseQuestions"> 
+          <h1>Your Questions</h1>
           {
             this.state.questions.map((question, ind) => {
               return (
@@ -41,7 +46,8 @@ export default class Browse extends Component {
                 </div>
               )
             })
-          }
+            }
+            </div>
         </div>
       )
     

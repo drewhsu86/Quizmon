@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Signin.css'
 import { loginUser } from '../services/auth' 
 
 export default class Signin extends Component {
@@ -6,7 +7,8 @@ export default class Signin extends Component {
     super(props) 
     this.state = {
       usernameInput: '',
-      passwordInput: ''
+      passwordInput: '',
+      msg: ''
     }
   }
 
@@ -22,15 +24,25 @@ export default class Signin extends Component {
       username: this.state.usernameInput,
       password: this.state.passwordInput
     }
-    const response = await loginUser(loginData)
-    console.log(response)
-    this.props.setUser(response.username, response.id)
+    try {
+      const response = await loginUser(loginData)
+      console.log(response)
+      this.props.setUser(response.username, response.id)
+    } catch (er) {
+      console.log(er)
+      this.setState({
+        msg: er.message
+      })
+    }
   }
 
   render() {
     return (
       <div className="signin">
-        
+        <h1>Log in</h1>
+        {
+          this.state.msg ? <p className="error"> &nbsp; {this.state.msg}</p> : null
+        }
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <input

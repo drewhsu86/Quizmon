@@ -111,7 +111,6 @@ class Edit extends Component {
 
 
   render() {
-    console.log(this.state)
     if (this.state.topics.length <= 0) {
       return (
         <div className="questionCreate">
@@ -122,7 +121,7 @@ class Edit extends Component {
       return (
         <div className="questionCreate">
 
-          <button onClick={this.handleDelete}>
+          <button className="questionDelete" onClick={this.handleDelete}>
             Delete This Question?
           </button>
 

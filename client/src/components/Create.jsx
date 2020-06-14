@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Create.css'
 import { Link, withRouter } from 'react-router-dom'
 import { createQuestion, getAllTopics } from '../services/questions'
   
@@ -68,7 +69,6 @@ class Create extends Component {
 
 
   render() {
-    console.log(this.state)
     if (this.state.topics.length <= 0) {
       return (
         <div className="questionCreate">

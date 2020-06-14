@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Question.css'
 import { withRouter } from 'react-router-dom'
 import { getOneQuestion } from '../services/questions'
 import { createComment, deleteComment } from '../services/comments'
@@ -20,10 +21,8 @@ class Question extends Component {
 
   initializeQuestion = async () => {
     const id = this.props.match.params.id 
-    console.log(id)
 
     const questionResponse = await getOneQuestion(id) 
-    console.log(questionResponse)
 
     this.setState({
       question: questionResponse,
@@ -41,12 +40,11 @@ class Question extends Component {
     e.preventDefault()
 
     try {
-      const response = await createComment({
+      await createComment({
         content: this.state.commentInput,
         question_id: this.state.question.id,
         user_id: this.props.user.id
       })
-      console.log(response)
 
       this.initializeQuestion()
     } catch (er) {
@@ -71,11 +69,13 @@ class Question extends Component {
     if (question) {
       return (
         <div className="questionShow">
-          <h3> {question.topic.name} Question </h3>
-          <h4> Difficulty: {question.difficulty} </h4>
-          <p>
+          <div className="questionInfo">
+            <h3> {question.topic.name} Question </h3>
+            <h4> Difficulty: {question.difficulty} </h4>
+            <p>
             {question.content}
-          </p>
+            </p>
+          </div>
           {this.state.guessedAnswer ? (
             <div className="questionAnswers">
               {
@@ -101,20 +101,21 @@ class Question extends Component {
             </div> )
           }
           
-          { this.props.user ? (<>
+          <div className="questionComments">
+          { this.props.user ? (<div className="questionPostComment">
             <h3>Post a Comment</h3>
             <form onSubmit={this.handleSubmit}>
               <textarea onChange={(e) => { this.setState({ commentInput: e.target.value }) }} value={this.state.commentInput}></textarea>
               <button>Submit Comment</button>
             </form>
-          </>) : null}
+          </div>) : null}
           
           <h3>Comments</h3> 
           {
             question.comments.map((comment, ind) => (
-              <div className="comment" key={ind}> 
+              <div className="questionComment" key={ind}> 
                 <p> <strong> From: </strong> {comment.user.username} </p>
-                <p>{comment.content}</p>
+                <p className="questionCommentText">{comment.content}</p>
                 {
                   this.props.user && this.props.user.id === comment.user.id ? (
                     <button onClick={() => this.handleDeleteComment(comment.id)}>Delete</button>
@@ -122,7 +123,8 @@ class Question extends Component {
                 }
               </div>
             ))
-          }
+            }
+          </div>
         </div>
       )
     

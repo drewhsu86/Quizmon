@@ -1,0 +1,50 @@
+.questionShow {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionInfo {
+  border: 1px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+.questionAnswers {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  color: white;
+  padding: 10px;
+}
+
+.questionAnswer {
+  background-color: grey;
+  margin: 10px;
+  padding: 10px 20px;
+}
+
+.questionAnswer:hover {
+  background-color: lightblue;
+}
+
+.questionPostComment {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionComments {
+  background-color: lightgrey;
+  margin: 20px;
+  padding: 10px 20px;
+}
+
+.questionComment {
+  background-color: darkgrey;
+  margin: 20px 10px;
+  padding: 5px 15px 15px 15px;
+}
+
+.questionCommentText {
+  background-color: white;
+  padding: 10px;
+}
