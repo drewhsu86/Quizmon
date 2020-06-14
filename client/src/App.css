@@ -36,3 +36,31 @@ a {
   color: red;
   font-style: italic;
 }
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 15px; 
+  }
+
+  .showBig {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .showSmall {
+    display: none;
+  }
+}

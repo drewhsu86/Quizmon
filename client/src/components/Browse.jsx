@@ -49,8 +49,8 @@ export default class Browse extends Component {
         <label htmlFor="chooseTopic"> Choose a topic </label>
         <select onChange={this.handleChangeTopic}>
           {
-            this.state.topics.map((topic) => {
-              return <option value={topic.id} key={topic.id}>{topic.name}</option>
+            this.state.topics.map((topic, ind) => {
+              return <option value={topic.id} key={ind}>{topic.name}</option>
             })
           }
         </select>

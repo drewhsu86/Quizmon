@@ -7,6 +7,7 @@
   position: relative;
   display: inline;
   font-size: 70px;
+  pointer-events: none;
 }
 
 .QLogoQuestionMark {
@@ -21,4 +22,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
