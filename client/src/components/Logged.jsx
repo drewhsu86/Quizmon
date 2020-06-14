@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import './Logged.css'
 
 function Logged(props) {
   const handleLogout = () => {
@@ -9,7 +10,7 @@ function Logged(props) {
   }
 
   return (
-    <div className="notLogged">
+    <div className="logged">
       <h1>You are logged in.</h1>
         <button onClick={handleLogout}>Log out</button>
   </div>
