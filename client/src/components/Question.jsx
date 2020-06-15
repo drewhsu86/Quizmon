@@ -3,6 +3,7 @@ import './Question.css'
 import { withRouter } from 'react-router-dom'
 import { getOneQuestion } from '../services/questions'
 import { createComment, deleteComment } from '../services/comments'
+import FiveStars from './FiveStars'
 
 class Question extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Question extends Component {
     const id = this.props.match.params.id 
 
     const questionResponse = await getOneQuestion(id) 
-    
+
     this.setState({
       question: questionResponse,
       commentInput: ''
@@ -70,7 +71,7 @@ class Question extends Component {
         <div className="questionShow">
           <div className="questionInfo">
             <h3> {question.topic.name} Question </h3>
-            <h4> &nbsp; Difficulty: {question.difficulty} </h4>
+            <h4> &nbsp; Difficulty: <FiveStars num={question.difficulty} /> </h4>
             <h4> &nbsp; Written By: <i>{question.user.username}</i> </h4>
             <p>
             {question.content}
