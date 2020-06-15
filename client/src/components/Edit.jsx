@@ -24,14 +24,11 @@ class Edit extends Component {
 
   async componentDidMount() {
     const topicResponse = await getAllTopics()
-    console.log(topicResponse)
 
     const id = this.props.match.params.id 
-    console.log('id: ', id)
 
     try {
       const questionResponse = await getOneQuestion(id)
-      console.log(questionResponse)
 
       if (topicResponse.length > 0) {
         this.setState({
@@ -56,7 +53,6 @@ class Edit extends Component {
   } 
 
   handleChange = (e, whichState) => {
-    console.log('handleChange: ', whichState)
     this.setState({
       [whichState]: e.target.value 
     })
@@ -73,8 +69,6 @@ class Edit extends Component {
     
       try {
         const response = await deleteQuestion(this.props.match.params.id)
-
-        console.log(response)
 
         this.props.history.push('/home')
       } catch (er) {
@@ -101,7 +95,6 @@ class Edit extends Component {
 
     try {
       const response = await editQuestion(this.props.match.params.id, questionData)
-      console.log(response)
 
       this.props.history.push('/home')
     } catch (er) {

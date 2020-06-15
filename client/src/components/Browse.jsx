@@ -34,7 +34,7 @@ export default class Browse extends Component {
     const topic_id = e.target.value 
 
     const questionResponse = await getQuestions(false, topic_id) 
-
+    
     this.setState({
       questions: questionResponse,
       chosenTopicId: topic_id 

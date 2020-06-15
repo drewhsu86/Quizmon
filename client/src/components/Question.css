@@ -32,10 +32,18 @@
   flex-direction: column;
 }
 
+.questionPostComment textarea {
+  min-width: 50%;
+  min-height: 100px;
+  margin-bottom: 10px;
+}
+
 .questionComments {
   background-color: lightgrey;
   margin: 20px;
   padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .questionComment {
@@ -48,3 +56,4 @@
   background-color: white;
   padding: 10px;
 }
+

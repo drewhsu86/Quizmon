@@ -23,7 +23,7 @@ class Question extends Component {
     const id = this.props.match.params.id 
 
     const questionResponse = await getOneQuestion(id) 
-
+    
     this.setState({
       question: questionResponse,
       commentInput: ''

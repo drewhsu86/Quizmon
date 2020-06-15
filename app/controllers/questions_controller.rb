@@ -53,25 +53,8 @@ class QuestionsController < ApplicationController
 
     # begin/rescue block taken from application control
     # but the render is taken out 
-    
-    @question = Question.find(params[:id])
 
-    begin
-      header = request.headers['Authorization']
-      header = header.split(' ').last if header
-      @decoded = decode(header)
-      @completed_id = @decoded[:user_id]
-      @my_completed = Completed.find_by({user_id: @completed_id, question_id: @question[:id]})
-      if @my_completed == nil 
-        @my_completed = {message: 'No completion found' }
-      end
-    rescue ActiveRecord::RecordNotFound => e
-      @completed_id = nil
-      @my_completed = { message: 'No user found' }
-    rescue JWT::DecodeError => e
-      @completed_id = nil  
-      @my_completed = { message: 'Decode Error' }
-    end
+    @question = Question.find(params[:id])
 
     puts '@my_completed'
     puts @my_completed

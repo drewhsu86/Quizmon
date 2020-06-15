@@ -24,7 +24,6 @@ class Create extends Component {
 
   async componentDidMount() {
     const topicResponse = await getAllTopics()
-    console.log(topicResponse)
 
     if (topicResponse.length > 0) {
       this.setState({
@@ -35,7 +34,6 @@ class Create extends Component {
   } 
 
   handleChange = (e, whichState) => {
-    console.log('handleChange: ', whichState)
     this.setState({
       [whichState]: e.target.value 
     })
@@ -59,7 +57,6 @@ class Create extends Component {
 
     try {
       const response = await createQuestion(questionData)
-      console.log(response)
 
       this.props.history.push('/home')
     } catch (er) {
