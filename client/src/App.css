@@ -65,3 +65,23 @@ a {
     display: none;
   }
 }
+
+@media (min-width: 1100px) {
+  select {
+    font-size: 25px;
+  }
+
+  label {
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 40px;
+    margin: 20px 0;
+  }
+
+  div {
+    font-size: 20px;
+  }
+}

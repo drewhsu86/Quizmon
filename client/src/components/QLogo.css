@@ -13,7 +13,7 @@
 .QLogoQuestionMark {
   position: absolute;
   top: 19px;
-  left: 12px;
+  left: 17px;
   width: 32px;
   height: 41px;
   background-color: #1100CC;
@@ -22,5 +22,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  transform: skewX(-13deg);
+  font-style: normal;
 }

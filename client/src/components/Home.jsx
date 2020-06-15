@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Browse.css'
 import { Link } from 'react-router-dom'
 import { getQuestions } from '../services/questions'
+import FiveStars from './FiveStars'
 
 export default class Browse extends Component {
   constructor() {
@@ -39,7 +40,7 @@ export default class Browse extends Component {
                 <div className="browseQuestion" key={ind}>
                   <Link to={`/edit/${question.id}`} >
                     <p>{question.content}</p>
-                    <h4>Difficulty: {question.difficulty}</h4>
+                    <h4>Difficulty: <FiveStars num={question.difficulty} /></h4>
                   </Link>
                 </div>
               )
