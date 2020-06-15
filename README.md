@@ -2,6 +2,8 @@
 
 ## Summary 
 
+[Deployed on Surge](https://http://quizmon.surge.sh/)
+
 Quizmon is an application aimed at users sharing multiple choice questions with the intent on helping each other study and improve at programming and data structures. A user can browse the existing questions, or sign up for an account and start writing questions. They can also edit or delete their own questions.
 
 Users must sign in in order to write comments on questions, but can read anyone's comments.
