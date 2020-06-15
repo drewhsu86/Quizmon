@@ -11,10 +11,10 @@ export default function FiveStars(props) {
     // make an array we can map 
     if (num < i) {
       // empty star 
-      arr.push(<span className="oneStar">&#9734;</span>)
+      arr.push(<span className="oneStar" key={i}>&#9734;</span>)
     } else {
       // filled star 
-      arr.push(<span className="oneStar">&#9733;</span>)
+      arr.push(<span className="oneStar" key={i}>&#9733;</span>)
     }
   }
 

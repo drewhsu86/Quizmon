@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
       end
     end
 
-    render json: @questions
+    render json: @questions, include: [ {topic: {only: [:id, :name]}} ]
   end
 
   # GET /questions/1
