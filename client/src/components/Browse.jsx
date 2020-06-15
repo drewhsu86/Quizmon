@@ -12,7 +12,8 @@ export default class Browse extends Component {
       questions: [],
       topics: [],
       chosenTopicId: 0,
-      sortQs: this.sortByDiffAsce
+      sortQs: this.sortByDiffAsce,
+      searchInput: ''
     }
   }
 
@@ -63,6 +64,45 @@ export default class Browse extends Component {
     }
   }
 
+  sortBySearch = (a, b) => {
+    // for sort functions, if it returns negative then 
+    // a goes before b, so we want more relevant searches to 
+    // set -1 point if found in content 
+    let aScore = 0
+    let bScore = 0 
+
+    const searchTerm = this.state.searchInput.toLowerCase()
+    
+    if (a.content.toLowerCase().includes(searchTerm)) {
+      console.log(a.content, 'A has', searchTerm)
+      aScore -= 1
+    }
+
+    if (b.content.toLowerCase().includes(searchTerm)) {
+      console.log(b.content, 'B has', searchTerm)
+      bScore -= 1
+    }
+      
+    console.log(aScore, bScore)
+    return aScore - bScore 
+  }
+
+  // submit for the search function 
+  handleSubmit = (e) => {
+    e.preventDefault() 
+
+    this.setState({
+      sortQs: this.sortBySearch
+    })
+  }
+
+  // on change for the search function
+  handleChange = (e) => {
+    this.setState({
+      searchInput: e.target.value 
+    })
+  }
+
   render() {
     return (
       <div className="browse">
@@ -84,6 +124,15 @@ export default class Browse extends Component {
             <option value="diffA">Difficulty: Ascending</option>
             <option value="diffD">Difficulty: Descending</option>
           </select>
+          
+          <form onSubmit={this.handleSubmit}>
+              <label htmlFor="searchQs">Search by term:</label>
+              <input name="searchQs"
+                value={this.state.searchInput}
+                onChange={this.handleChange}
+              ></input>
+              <button>Submit</button>
+          </form>
         </div>
         <div className="browseQuestions"> 
           <h1>Questions</h1>

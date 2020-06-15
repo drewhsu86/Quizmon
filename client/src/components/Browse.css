@@ -20,6 +20,10 @@
   padding: 20px;
 }
 
+.browseQuestionsHeader select {
+  margin: 10px 0;
+}
+
 .browseQuestionsHeader input {
   width: 40%;
   height: 25px;

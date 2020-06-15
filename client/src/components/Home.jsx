@@ -44,7 +44,7 @@ export default class Browse extends Component {
       aScore -= 1
     }
     
-    if (b.topic.name.toLowerCase().includes(this.state.searchInput)) {
+    if (b.topic.name.toLowerCase().includes(this.state.searchInput.toLowerCase)) {
       bScore -= 3
     }
     if (b.content.toLowerCase().includes(this.state.searchInput.toLowerCase())) {
