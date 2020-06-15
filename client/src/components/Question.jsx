@@ -82,7 +82,7 @@ class Question extends Component {
               {
                 ['a', 'b', 'c', 'd'].map(letter => (
                   <div className="questionAnswer"  key={letter} 
-                    style={this.state.guessedAnswer === letter ? (this.state.guessedAnswer === this.state.question.correct_answer ? { backgroundColor: 'green' } : { backgroundColor: 'red' }) : (letter === this.state.question.correct_answer ? { backgroundColor: 'green' } : null)}
+                    style={question['answer_' + letter] ? (this.state.guessedAnswer === letter ? (this.state.guessedAnswer === this.state.question.correct_answer ? { backgroundColor: 'green' } : { backgroundColor: 'red' }) : (letter === this.state.question.correct_answer ? { backgroundColor: 'green' } : null) ) : {display: "none"}} 
                   >
                     {question['answer_' + letter]}
                   </div>
@@ -93,7 +93,8 @@ class Question extends Component {
               {
                 ['a', 'b', 'c', 'd'].map(letter => (
                   <div className="questionAnswer" key={letter}
-                    onClick={() => {this.handleAnswer(letter)}}
+                    onClick={() => { this.handleAnswer(letter) }}
+                    style={question['answer_' + letter] ? null : {display: "none"}}
                   >
                     {question['answer_' + letter]}
                   </div>
