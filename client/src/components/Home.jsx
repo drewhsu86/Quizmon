@@ -96,6 +96,7 @@ export default class Browse extends Component {
                     <p>{question.content}</p>
                     <h4>Difficulty: <FiveStars num={question.difficulty} /></h4>
                     <p><strong>Topic:</strong> &nbsp; {question.topic.name}</p>
+                    { question.private ? <p style={{color: "red"}}>THIS QUESTION IS PRIVATE</p> : null }
                   </Link>
                 </div>
               )

@@ -71,10 +71,10 @@ class Question extends Component {
         <div className="questionShow">
           <div className="questionInfo">
             <h3> {question.topic.name} Question </h3>
-            <h4> &nbsp; Difficulty: <FiveStars num={question.difficulty} /> </h4>
-            <h4> &nbsp; Written By: <i>{question.user.username}</i> </h4>
+            <h4> Difficulty: <FiveStars num={question.difficulty} /> </h4>
+            <h4> Written By: <i>{question.user.username}</i> </h4>
             <p>
-            {question.content}
+            &nbsp; {question.content}
             </p>
           </div>
           {this.state.guessedAnswer ? (
