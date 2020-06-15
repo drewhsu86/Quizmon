@@ -53,6 +53,7 @@ class Signup extends Component {
     }
   }
 
+  // we need username, email, password, password_confirmation 
   render() {
     return (
       <div className="signin">

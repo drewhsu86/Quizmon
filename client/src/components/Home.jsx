@@ -22,7 +22,7 @@ export default class Browse extends Component {
   }
 
   render() {
-    // if we are not logged in, return a 'you are not logged in' screen 
+    // uses the same css as browse because it's mapping a table of questions 
       return (
         <div className="browse">
           <div className="browseInfo">

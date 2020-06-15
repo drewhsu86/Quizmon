@@ -38,6 +38,7 @@ class Signin extends Component {
     }
   }
 
+  // we want email and password as inputs to login 
   render() {
     return (
       <div className="signin">

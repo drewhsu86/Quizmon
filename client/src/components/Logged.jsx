@@ -3,6 +3,10 @@ import { withRouter } from 'react-router-dom'
 import './Logged.css'
 
 function Logged(props) {
+  // we need this page to show up for pages where you are logged in already
+  // but the page assumes you aren't 
+  // for example if you use a route instead of being redirected 
+
   const handleLogout = () => {
     // log out and then go to signin page 
     props.logout()

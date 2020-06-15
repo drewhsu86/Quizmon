@@ -16,9 +16,7 @@ export default class Nav extends React.Component {
     }
   }
 
-  componentDidMount() {
-    
-  }
+  // we need a setInterval because we want the 'about' text to move 
 
   startInterval = () => {
     // interval in milliseconds 
@@ -47,7 +45,9 @@ export default class Nav extends React.Component {
   endInterval = () => {
     clearInterval(this.state.aboutMoveInterval)
   }
-    
+  
+  // we want our banner to show the word "about" to show that it's a link 
+  // on hover so we need a mouseEnter and mouseLeave
   bannerMouseEnter = (e) => {
     try {
       e.target.children[1].style = "display: block"
