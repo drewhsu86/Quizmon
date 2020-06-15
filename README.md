@@ -27,6 +27,6 @@ Here is the React component hierarchy, which does not include many nested compon
 
 [React Component Hierarchy - draw.io](https://app.diagrams.net/#G1ZBsu3NufmAujOtJNN5jmgIDCL-xgoabz)
 
-Here is an ERD of the databases on the backend. Currently, the Completed-ness table has not been implemented but Users, Questions, Topics and Comments have been implemented. 
+Here is an ERD of the databases on the backend. Currently, the Completed table has not been implemented but Users, Questions, Topics and Comments have been implemented. 
 
 ![ERD of Quizmon backend](./quizmon-ERD.png)
