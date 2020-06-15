@@ -10,7 +10,8 @@ export default class Browse extends Component {
     this.state = {
       questions: [],
       topics: [],
-      chosenTopicId: 0
+      chosenTopicId: 0,
+      sortQs: this.sortByDiffAsce
     }
   }
 
@@ -40,6 +41,27 @@ export default class Browse extends Component {
     })
   }
 
+  sortByDiffAsce = (a, b) => {
+    return a.difficulty - b.difficulty 
+  }
+
+  sortByDiffDesc = (a, b) => {
+    return b.difficulty - a.difficulty 
+  }
+
+  handleSort = (e) => {
+    const sortType = e.target.value 
+    if (sortType === "diffA") {
+      this.setState({
+        sortQs: this.sortByDiffAsce
+      })
+    } else if (sortType === "diffD") {
+      this.setState({
+        sortQs: this.sortByDiffDesc 
+      })
+    }
+  }
+
   render() {
     return (
       <div className="browse">
@@ -55,10 +77,17 @@ export default class Browse extends Component {
           }
         </select>
         </div>
+        <div className="browseQuestionsHeader">  
+          <label htmlFor="sortQs">Sort by:</label>
+          <select name="sortQs" onChange={this.handleSort}>
+            <option value="diffA">Difficulty: Ascending</option>
+            <option value="diffD">Difficulty: Descending</option>
+          </select>
+        </div>
         <div className="browseQuestions"> 
           <h1>Questions</h1>
           {
-          this.state.questions.map((question, ind) => {
+          this.state.questions.sort(this.state.sortQs).map((question, ind) => {
             return (
               <Link to={`/questions/${question.id}`} >
                 <div className="browseQuestion" key={ind}>

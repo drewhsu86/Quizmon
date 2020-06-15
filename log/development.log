@@ -11550,3 +11550,402 @@ Processing by AuthenticationController#verify as HTML
 Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 1.3ms | Allocations: 912)
 
 
+Started GET "/topics" for ::1 at 2020-06-15 09:27:19 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:27:19 -0400
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TopicsController#index as HTML
+  [1m[35m (28.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+  [1m[36mTopic Load (45.4ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 138ms (Views: 11.9ms | ActiveRecord: 103.9ms | Allocations: 9104)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:27:20 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 176ms (Views: 1.7ms | ActiveRecord: 98.9ms | Allocations: 16699)
+
+
+  [1m[36mQuestion Load (87.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 175ms (Views: 59.4ms | ActiveRecord: 101.8ms | Allocations: 17961)
+
+
+Started GET "/questions?topic=2" for ::1 at 2020-06-15 09:29:50 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"2"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 2], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.7ms | Allocations: 1208)
+
+
+Started GET "/questions?topic=3" for ::1 at 2020-06-15 09:29:52 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"3"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 3], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.4ms | Allocations: 1211)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:29:54 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.5ms | Allocations: 1414)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-15 09:30:01 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 24ms (Views: 4.6ms | ActiveRecord: 0.9ms | Allocations: 2470)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:30:09 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (1.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 1.7ms | Allocations: 1135)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:30:09 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (3.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 8ms (Views: 4.2ms | ActiveRecord: 3.1ms | Allocations: 1395)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:50:46 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:50:46 -0400
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#verify as HTML
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TopicsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 111ms (Views: 0.9ms | ActiveRecord: 29.1ms | Allocations: 10311)
+
+
+  [1m[36mTopic Load (99.6ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 157ms (Views: 24.6ms | ActiveRecord: 125.1ms | Allocations: 11232)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:50:47 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 110ms (Views: 74.3ms | ActiveRecord: 5.0ms | Allocations: 12679)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:53:24 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:53:24 -0400
+Processing by TopicsController#index as HTML
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mTopic Load (11.2ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 3.0ms | Allocations: 933)
+
+
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 9.8ms | ActiveRecord: 11.2ms | Allocations: 2765)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:53:24 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 1.4ms | Allocations: 1397)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:54:18 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:54:18 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.5ms | Allocations: 1136)
+
+
+Processing by AuthenticationController#verify as HTML
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:54:18 -0400
+  [1m[36mUser Load (40.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 43ms (Views: 0.5ms | ActiveRecord: 40.5ms | Allocations: 1270)
+
+
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (3.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 9ms (Views: 3.7ms | ActiveRecord: 3.7ms | Allocations: 1395)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:54:39 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:54:39 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (14.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 3.5ms | ActiveRecord: 14.7ms | Allocations: 1135)
+
+
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (13.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 13.8ms | Allocations: 912)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:54:39 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (38.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 49ms (Views: 9.9ms | ActiveRecord: 38.0ms | Allocations: 1431)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:57:37 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:57:37 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (40.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 46ms (Views: 0.9ms | ActiveRecord: 40.9ms | Allocations: 896)
+
+
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (33.0ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 37ms (Views: 3.4ms | ActiveRecord: 33.0ms | Allocations: 1135)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:57:37 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.7ms | Allocations: 1395)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:57:52 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 09:57:52 -0400
+Processing by TopicsController#index as HTML
+Processing by AuthenticationController#verify as HTML
+  [1m[36mTopic Load (7.3ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 3.3ms | ActiveRecord: 7.3ms | Allocations: 1733)
+
+
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 3.0ms | Allocations: 2160)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:57:52 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (33.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 39ms (Views: 5.7ms | ActiveRecord: 33.1ms | Allocations: 1397)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-15 09:58:02 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 10ms (Views: 2.1ms | ActiveRecord: 2.9ms | Allocations: 2467)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:58:09 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.9ms | Allocations: 1135)
+
+
+Started POST "/questions" for ::1 at 2020-06-15 09:58:24 -0400
+Processing by QuestionsController#create as HTML
+  Parameters: {"question"=>{"content"=>"Test question 2", "correct_answer"=>"a", "difficulty"=>5, "answer_a"=>"1", "answer_b"=>"2", "answer_c"=>"3", "answer_d"=>"4", "private"=>false, "user_id"=>2, "topic_id"=>1}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[36mTopic Load (0.3ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[36mQuestion Create (60.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at", "difficulty") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["content", "Test question 2"], ["correct_answer", "a"], ["answer_a", "1"], ["answer_b", "2"], ["answer_c", "3"], ["answer_d", "4"], ["private", false], ["user_id", 2], ["topic_id", 1], ["created_at", "2020-06-15 13:58:24.521147"], ["updated_at", "2020-06-15 13:58:24.521147"], ["difficulty", 5]]
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+Completed 201 Created in 94ms (Views: 0.7ms | ActiveRecord: 63.1ms | Allocations: 7689)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-15 09:58:24 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (12.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (1.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 24ms (Views: 2.8ms | ActiveRecord: 13.7ms | Allocations: 2662)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:58:26 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (5.1ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 5.5ms | ActiveRecord: 5.1ms | Allocations: 1135)
+
+
+Started POST "/questions" for ::1 at 2020-06-15 09:58:36 -0400
+Processing by QuestionsController#create as HTML
+  Parameters: {"question"=>{"content"=>"Test question 3", "correct_answer"=>"a", "difficulty"=>4, "answer_a"=>"1", "answer_b"=>"2", "answer_c"=>"3", "answer_d"=>"4", "private"=>false, "user_id"=>2, "topic_id"=>1}}
+  [1m[36mUser Load (9.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[36mTopic Load (0.5ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[36mQuestion Create (41.1ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at", "difficulty") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["content", "Test question 3"], ["correct_answer", "a"], ["answer_a", "1"], ["answer_b", "2"], ["answer_c", "3"], ["answer_d", "4"], ["private", false], ["user_id", 2], ["topic_id", 1], ["created_at", "2020-06-15 13:58:36.713768"], ["updated_at", "2020-06-15 13:58:36.713768"], ["difficulty", 4]]
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+Completed 201 Created in 67ms (Views: 0.8ms | ActiveRecord: 53.1ms | Allocations: 4884)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-15 09:58:36 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (2.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 18ms (Views: 4.8ms | ActiveRecord: 6.6ms | Allocations: 2871)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:58:37 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (6.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 6.8ms | ActiveRecord: 6.7ms | Allocations: 1135)
+
+
+Started POST "/questions" for ::1 at 2020-06-15 09:58:52 -0400
+Processing by QuestionsController#create as HTML
+  Parameters: {"question"=>{"content"=>"Test question 4", "correct_answer"=>"a", "difficulty"=>3, "answer_a"=>"1", "answer_b"=>"2", "answer_c"=>"3", "answer_d"=>"4", "private"=>false, "user_id"=>2, "topic_id"=>1}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[36mTopic Load (0.3ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[36mQuestion Create (1.1ms)[0m  [1m[32mINSERT INTO "questions" ("content", "correct_answer", "answer_a", "answer_b", "answer_c", "answer_d", "private", "user_id", "topic_id", "created_at", "updated_at", "difficulty") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["content", "Test question 4"], ["correct_answer", "a"], ["answer_a", "1"], ["answer_b", "2"], ["answer_c", "3"], ["answer_d", "4"], ["private", false], ["user_id", 2], ["topic_id", 1], ["created_at", "2020-06-15 13:58:52.972949"], ["updated_at", "2020-06-15 13:58:52.972949"], ["difficulty", 3]]
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+  [1m[35m (40.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:93:in `create'
+Completed 201 Created in 54ms (Views: 0.6ms | ActiveRecord: 43.1ms | Allocations: 4884)
+
+
+Started GET "/questions?my_own=true" for ::1 at 2020-06-15 09:58:53 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"my_own"=>"true"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:37:in `filter'
+Completed 200 OK in 10ms (Views: 4.9ms | ActiveRecord: 0.9ms | Allocations: 3080)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 09:58:59 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (2.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 7.7ms | ActiveRecord: 2.7ms | Allocations: 1135)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 09:58:59 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 2017)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 10:00:27 -0400
+Processing by TopicsController#index as HTML
+Started GET "/auth/verify" for ::1 at 2020-06-15 10:00:27 -0400
+  [1m[36mTopic Load (3.7ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 5.9ms | ActiveRecord: 3.7ms | Allocations: 1476)
+
+
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 4.9ms | Allocations: 893)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 10:00:27 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (29.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 41ms (Views: 9.2ms | ActiveRecord: 29.3ms | Allocations: 2017)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 10:01:46 -0400
+Started GET "/auth/verify" for ::1 at 2020-06-15 10:01:46 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (1.0ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 1.0ms | Allocations: 1135)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 10:01:46 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+Processing by AuthenticationController#verify as HTML
+  [1m[36mQuestion Load (2.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:21:in `authorize_request'
+Completed 200 OK in 6ms (Views: 0.7ms | ActiveRecord: 1.4ms | Allocations: 1569)
+
+
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 16ms (Views: 13.0ms | ActiveRecord: 2.2ms | Allocations: 3173)
+
+
+Started GET "/questions?topic=2" for ::1 at 2020-06-15 10:02:12 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"2"}
+  [1m[36mQuestion Load (3.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 2], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 10ms (Views: 5.4ms | ActiveRecord: 3.6ms | Allocations: 1188)
+
+
+Started GET "/questions?topic=3" for ::1 at 2020-06-15 10:02:16 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"3"}
+  [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 3], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 1.4ms | Allocations: 1188)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 10:02:18 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.7ms | Allocations: 2017)
+
+

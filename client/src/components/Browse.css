@@ -11,6 +11,13 @@
   padding: 20px;
 }
 
+.browseQuestionsHeader {
+  background-color: #1100CC;
+  color: white;
+  margin: 20px;
+  padding: 20px;
+}
+
 .browseQuestions {
   background-color: lightgrey;
   margin: 20px;
