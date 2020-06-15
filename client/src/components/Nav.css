@@ -24,6 +24,7 @@ nav {
 .navBannerTitle {
   position: relative;
   font-size: 70px;
+  font-style: italic;
 }
 
 .navBannerAbout {
