@@ -3,6 +3,10 @@ body {
   width: 100%;
 }
 
+div {
+  border-radius: 5px;
+}
+
 .App {
   font-family: sans-serif;
 }

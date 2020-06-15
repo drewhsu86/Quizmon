@@ -13031,3 +13031,71 @@ Processing by QuestionsController#show as HTML
 Completed 200 OK in 144ms (Views: 40.0ms | ActiveRecord: 99.5ms | Allocations: 12158)
 
 
+Started GET "/topics" for ::1 at 2020-06-15 15:08:44 -0400
+  [1m[35m (42.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.9ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 52ms (Views: 30.8ms | ActiveRecord: 7.5ms | Allocations: 5385)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 15:08:44 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 48ms (Views: 29.7ms | ActiveRecord: 3.9ms | Allocations: 13602)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 15:09:02 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (1.1ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 1.1ms | Allocations: 1154)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 15:09:02 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (4.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 18ms (Views: 11.1ms | ActiveRecord: 4.7ms | Allocations: 2018)
+
+
+Started GET "/questions/1" for ::1 at 2020-06-15 15:10:12 -0400
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:57:in `show'
+  [1m[36mTopic Load (0.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics" WHERE "topics"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."question_id" = $1[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:64:in `show'
+Completed 200 OK in 110ms (Views: 90.5ms | ActiveRecord: 9.5ms | Allocations: 22777)
+
+
+Started GET "/topics" for ::1 at 2020-06-15 15:12:29 -0400
+Processing by TopicsController#index as HTML
+  [1m[36mTopic Load (0.8ms)[0m  [1m[34mSELECT "topics".* FROM "topics"[0m
+  ↳ app/controllers/topics_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.8ms | Allocations: 1154)
+
+
+Started GET "/questions?topic=1" for ::1 at 2020-06-15 15:12:29 -0400
+Processing by QuestionsController#index as HTML
+  Parameters: {"topic"=>"1"}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."topic_id" = $1 AND "questions"."private" = $2[0m  [["topic_id", 1], ["private", false]]
+  ↳ app/controllers/questions_controller.rb:43:in `index'
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.4ms | Allocations: 2017)
+
+
