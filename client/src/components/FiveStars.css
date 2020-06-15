@@ -1,0 +1,9 @@
+.oneStar {
+  font-size: 20px;
+}
+
+@media (min-width: 1100px) {
+  .oneStar {
+    font-size: 25px;
+  }
+}

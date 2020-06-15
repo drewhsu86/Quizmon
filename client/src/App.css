@@ -38,6 +38,10 @@ a {
   font-style: italic;
 }
 
+textarea {
+  font-size: 16px;
+}
+
 @media (max-width: 800px) {
   h1 {
     font-size: 20px;
@@ -58,11 +62,19 @@ a {
   .showBig {
     display: none;
   }
+
+  select {
+    width: 80%;
+  }
 }
 
 @media (min-width: 800px) {
   .showSmall {
     display: none;
+  }
+
+  textarea {
+    font-size: 20px;
   }
 }
 
@@ -73,7 +85,6 @@ a {
 
   label {
     font-size: 26px;
-    font-weight: bold;
   }
 
   h1 {
