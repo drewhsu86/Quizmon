@@ -7,11 +7,24 @@
 .questionDelete {
   min-height: 50px;
   font-weight: bold;
+  margin: 30px 0;
 }
 
 .questionDelete:hover {
   background-color: darkred;
   color: white;
+}
+
+.questionVisit {
+  min-height: 50px;
+  font-weight: bold;
+  background-color: #1100CC;
+  color: white;
+}
+
+.questionVisit:hover {
+  background-color: skyblue;
+  text-shadow: 0px 0px 5px black;
 }
 
 .questionCreate label {

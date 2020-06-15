@@ -114,9 +114,11 @@ class Edit extends Component {
       return (
         <div className="questionCreate">
 
-          <button className="questionDelete" onClick={this.handleDelete}>
-            Delete This Question?
-          </button>
+          <Link to={`/questions/${this.props.match.params.id}`}>
+            <button className="questionVisit">
+              Visit This Question's Page 
+            </button>
+          </Link>
 
           <h1>Edit/Delete a question</h1>
 
@@ -209,6 +211,10 @@ class Edit extends Component {
 
             <button>Submit</button>
           </form>
+
+          <button className="questionDelete" onClick={this.handleDelete}>
+            Delete This Question?
+          </button>
         
         </div>
       )
