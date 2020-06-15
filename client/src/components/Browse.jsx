@@ -24,6 +24,8 @@ export default class Browse extends Component {
 
     const questionResponse = await getQuestions(false, topic_id) 
 
+    questionResponse.sort(this.sortByDiffAsce)
+
     this.setState({
       topics: topicResponse,
       questions: questionResponse,
